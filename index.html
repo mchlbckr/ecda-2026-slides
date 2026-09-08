@@ -2817,10 +2817,17 @@ display:block!important;
 <p><strong>How to read the plot</strong></p>
 <ul>
 <li>four observed training sizes: 50, 100, 200, and 400 severe examples</li>
-<li>each point shows mean AP across five random subsamples</li>
-<li>vertical bars show one standard deviation across the five draws</li>
+<li>points show mean AP across five random subsamples; bars show one standard deviation</li>
 <li>the solid line covers the observed range; the dashed line extrapolates beyond it</li>
 </ul>
+<p><strong>Log-linear fit</strong></p>
+<p><span class="math display">
+\begin{aligned}
+AP &amp;= -0.187+0.133\ln(n) \\
+R^2 &amp;= 0.979
+\end{aligned}
+</span></p>
+<p>Doubling the training set adds <span class="math inline">0.133\ln(2)=0.092</span> AP.</p>
 <div class="fragment">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -2831,8 +2838,7 @@ display:block!important;
 <p><strong>Important</strong></p>
 </div>
 <div class="callout-content">
-<p><strong>Result.</strong> Average precision continues to increase across the observed range. The fitted curve gains about 0.09 AP with each doubling of the severe training set.</p>
-<p>AP 0.75 corresponds to about <strong>1,160 severe examples</strong>, but this estimate extrapolates beyond the largest observed training set of 400.</p>
+<p><strong>Planning estimate.</strong> AP 0.75 corresponds to about <strong>1,160 severe examples</strong>, but this extrapolates beyond the largest observed training set of 400.</p>
 </div>
 </div>
 </div>
