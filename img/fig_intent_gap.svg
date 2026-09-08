@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1760 580" width="1760" height="580"
+     role="img" aria-label="The intent gap: the prompt asking for webcam emotion-detection code is observed, but the intended purpose and deployment context that the AI Act regulates are not. The same code is a minimal-risk demo, a high-risk emotion-recognition system under Annex III, or a prohibited practice under Article 5 if used in a workplace or school. All three labelers called the prompt severe but split on which tier, so the consensus filter discarded it.">
+  <defs>
+    <marker id="g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#0014a0"/>
+    </marker>
+    <marker id="gg" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#868686"/>
+    </marker>
+  </defs>
+  <g font-family="Source Sans Pro, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+
+    <!-- observed -->
+    <text x="40" y="30" font-size="15" fill="#0014a0" font-weight="700" letter-spacing="1.4">OBSERVED</text>
+    <rect x="40" y="48" width="420" height="200" rx="12" fill="#ffffff" stroke="#0014a0" stroke-width="2.5"/>
+    <text x="66" y="92" font-size="22" fill="#1d1d1b" font-weight="700">The prompt</text>
+    <text x="66" y="144" font-size="19" fill="#0014a0" font-style="italic">“write python code to detect face</text>
+    <text x="66" y="173" font-size="19" fill="#0014a0" font-style="italic">emotion on real time on web cam”</text>
+    <text x="66" y="220" font-size="16" fill="#868686">writing this code is not regulated</text>
+
+    <line x1="464" y1="148" x2="524" y2="148" stroke="#0014a0" stroke-width="2.5" marker-end="url(#g)"/>
+
+    <!-- the gap -->
+    <text x="530" y="30" font-size="15" fill="#eb0041" font-weight="700" letter-spacing="1.4">NOT OBSERVED — YET THIS IS WHAT THE ACT REGULATES</text>
+    <rect x="530" y="48" width="520" height="340" rx="14" fill="#fafafa" stroke="#868686" stroke-width="2.5" stroke-dasharray="9 6"/>
+    <text x="556" y="92" font-size="22" fill="#1d1d1b" font-weight="700">Intended purpose &amp; deployment</text>
+    <rect x="556" y="129" width="7" height="7" fill="#868686"/><text x="576" y="136" font-size="18" fill="#4a4a4a">who provides or deploys the system?</text>
+    <rect x="556" y="165" width="7" height="7" fill="#868686"/><text x="576" y="172" font-size="18" fill="#4a4a4a">in which context — a demo, HR, a school?</text>
+    <rect x="556" y="201" width="7" height="7" fill="#868686"/><text x="576" y="208" font-size="18" fill="#4a4a4a">on whom, and with what consequence?</text>
+    <rect x="556" y="237" width="7" height="7" fill="#868686"/><text x="576" y="244" font-size="18" fill="#4a4a4a">is it put into service at all?</text>
+    <text x="556" y="300" font-size="17" fill="#eb0041" font-weight="600">none of this is contained in the prompt —</text>
+    <text x="556" y="326" font-size="17" fill="#eb0041" font-weight="600">it becomes high risk only once the system is used</text>
+
+    <path d="M1052 218 C 1090 218, 1090 100, 1124 100" fill="none" stroke="#868686" stroke-width="2.5" marker-end="url(#gg)"/>
+    <line x1="1052" y1="218" x2="1124" y2="218" stroke="#868686" stroke-width="2.5" marker-end="url(#gg)"/>
+    <path d="M1052 218 C 1090 218, 1090 330, 1124 330" fill="none" stroke="#868686" stroke-width="2.5" marker-end="url(#gg)"/>
+
+    <!-- outcomes -->
+    <rect x="1130" y="50"  width="590" height="100" rx="10" fill="#ffffff" stroke="#dfe3f0" stroke-width="1.5"/>
+    <rect x="1130" y="50"  width="9" height="100" rx="4" fill="#00965a"/>
+    <text x="1162" y="82"  font-size="14" fill="#868686" letter-spacing="1.2">MINIMAL</text>
+    <text x="1162" y="113" font-size="20" fill="#1d1d1b" font-weight="600">a demo that never leaves your laptop</text>
+    <text x="1162" y="138" font-size="15" fill="#868686">no obligations</text>
+
+    <rect x="1130" y="165" width="590" height="100" rx="10" fill="#ffffff" stroke="#dfe3f0" stroke-width="1.5"/>
+    <rect x="1130" y="165" width="9" height="100" rx="4" fill="#ff821e"/>
+    <text x="1162" y="197" font-size="14" fill="#868686" letter-spacing="1.2">HIGH — ANNEX III, BIOMETRICS</text>
+    <text x="1162" y="228" font-size="20" fill="#1d1d1b" font-weight="600">an emotion-recognition system put into service</text>
+    <text x="1162" y="253" font-size="15" fill="#868686">duties apply from 2 Dec 2027 · disclosure already since 2 Aug 2026</text>
+
+    <rect x="1130" y="280" width="590" height="100" rx="10" fill="#ffffff" stroke="#dfe3f0" stroke-width="1.5"/>
+    <rect x="1130" y="280" width="9" height="100" rx="4" fill="#eb0041"/>
+    <text x="1162" y="312" font-size="14" fill="#868686" letter-spacing="1.2">UNACCEPTABLE — ART. 5(1)(f)</text>
+    <text x="1162" y="343" font-size="20" fill="#1d1d1b" font-weight="600">the same system used at work or in a school</text>
+    <text x="1162" y="368" font-size="15" fill="#eb0041">prohibited outright — binding since 2 Feb 2025</text>
+
+    <!-- evidence strip -->
+    <rect x="40" y="420" width="1680" height="130" rx="12" fill="#f4f6fd" stroke="#0014a0" stroke-width="1.5"/>
+    <text x="70" y="464" font-size="20" fill="#0014a0" font-weight="700">In the three-model round all labelers called it severe — split on the tier:</text>
+    <rect x="810" y="438" width="290" height="46" rx="8" fill="#ffffff" stroke="#eb0041" stroke-width="2"/>
+    <text x="955" y="468" text-anchor="middle" font-size="19" fill="#1d1d1b" font-weight="600">Mistral → UNACCEPTABLE</text>
+    <rect x="1125" y="438" width="230" height="46" rx="8" fill="#ffffff" stroke="#ff821e" stroke-width="2"/>
+    <text x="1240" y="468" text-anchor="middle" font-size="19" fill="#1d1d1b" font-weight="600">Gemma → HIGH</text>
+    <rect x="1380" y="438" width="230" height="46" rx="8" fill="#ffffff" stroke="#ff821e" stroke-width="2"/>
+    <text x="1495" y="468" text-anchor="middle" font-size="19" fill="#1d1d1b" font-weight="600">Qwen → HIGH</text>
+    <text x="70" y="522" font-size="18" fill="#868686">That filter demanded an <tspan font-style="italic">exact</tspan> tier match, so the prompt was discarded — one of only 14 such cases. The two-model filter in use today works the same way, with one voter fewer.</text>
+  </g>
+</svg>

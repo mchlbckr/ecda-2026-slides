@@ -1,0 +1,112 @@
+.reveal .deck-kable {
+  width: 100%;
+  margin: 0.35em auto 0;
+  border-collapse: collapse;
+  font-size: 0.80em;
+  line-height: 1.22;
+}
+
+.reveal .deck-kable thead th {
+  background: #0014a0;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 0.48em 0.62em;
+  border: 0;
+  text-align: left;
+  vertical-align: bottom;
+}
+
+.reveal .deck-kable tbody td {
+  padding: 0.44em 0.62em;
+  border-top: 1px solid rgba(0, 20, 160, 0.16);
+  vertical-align: middle;
+}
+
+.reveal .deck-kable tbody td:not(:first-child) {
+  font-size: 1.08em;
+  font-variant-numeric: tabular-nums;
+}
+
+.reveal .deck-kable tbody tr:nth-child(even) {
+  background: rgba(0, 180, 230, 0.07);
+}
+
+.reveal .deck-kable tbody tr:last-child {
+  border-bottom: 2px solid rgba(0, 20, 160, 0.28);
+}
+
+.reveal .cell-output-display {
+  margin-top: 0.15em;
+}
+
+.reveal section > p,
+.reveal section > ul,
+.reveal section > ol {
+  max-width: 96%;
+}
+
+.reveal li {
+  margin-bottom: 0.25em;
+}
+
+.reveal img.assistant-shot {
+  border: 1px solid rgba(0, 20, 160, 0.20);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 16, 49, 0.10);
+}
+
+.reveal .figure-note {
+  color: #6f7480;
+  font-size: 0.50em;
+  line-height: 1.2;
+  margin: 0.10em auto 0;
+  text-align: center;
+}
+
+.reveal .figure-note p {
+  margin: 0;
+}
+
+.reveal figcaption,
+.reveal p.caption {
+  color: #6f7480;
+  font-size: 0.50em;
+  line-height: 1.2;
+  margin: 0.10em auto 0;
+  text-align: center;
+}
+
+/* Compact conclusion strip on the related-work slide. */
+.reveal .research-takeaway {
+  box-sizing: border-box;
+  margin-top: 0.35em;
+  padding: 0.24em 0.55em;
+  border-left: 5px solid #00a6d6;
+  background: rgba(0, 166, 214, 0.10);
+  font-size: 0.66em;
+  line-height: 1.25;
+}
+
+.reveal .research-takeaway p {
+  margin: 0;
+}
+
+.reveal section#questions h3 {
+  font-size: 1.65em;
+  margin-bottom: 0.65em;
+}
+
+.reveal .slides-link {
+  margin-top: 1.2em;
+  font-size: 0.86em;
+}
+
+.reveal .slides-link p {
+  margin: 0.15em 0;
+}
+
+.reveal img.slides-qr {
+  padding: 0.25em;
+  border: 1px solid rgba(0, 20, 160, 0.18);
+  background: #ffffff;
+}

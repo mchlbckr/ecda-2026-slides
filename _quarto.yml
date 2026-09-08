@@ -1,0 +1,62 @@
+project:
+  title: "Prompt-Based AI-Act Detection"
+  output-dir: _output
+format:
+  revealjs:
+    self-contained: true
+    standalone: true
+    embed-resources: true
+    code-copy: hover
+    theme:
+    - default
+    - css/msb.scss
+    css:
+      - css/toc.css
+    slide-number: c
+    show-slide-number: all
+    title-slide-attributes:
+      data-background-image: img/title.png
+      data-background-size: cover
+    width: 1920
+    height: 1080
+bibliography: references.bib
+csl: ieee.csl
+link-citations: true
+citations-hover: true
+navigation-mode: linear
+editor: source
+logo: img/logo.png
+footer: "Inferring AI-Act-Relevant Application Contexts from Prompts — Michael Bücker — ECDA 2026, Stralsund"
+number-sections: true
+number-depth: 2
+slide-level: 3
+toc: true
+toc-depth: 1
+lang: en
+code-line-numbers: false
+progress: true
+html-math-method: katex
+include-after: |
+  <script type="text/javascript">
+    Reveal.on('ready', event => {
+      if (event.indexh === 0) {
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        document.querySelector("div.footer-default").style.display = "none";
+        document.querySelector("div.slide-number").style.display = "none";
+      }
+    });
+    Reveal.addEventListener('slidechanged', (event) => {
+      if (event.indexh === 0) {
+        Reveal.configure({ slideNumber: null});
+        document.querySelector("div.has-logo > img.slide-logo").style.display = "none";
+        document.querySelector("div.footer-default").style.display = "none";
+        document.querySelector("div.slide-number").style.display = "none";
+      }
+      if (event.indexh === 1) {
+        Reveal.configure({ slideNumber: 'c' });
+        document.querySelector("div.has-logo > img.slide-logo").style.display = null;
+        document.querySelector("div.footer-default").style.display = null;
+        document.querySelector("div.slide-number").style.display = null;
+      }
+    });
+  </script>

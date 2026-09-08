@@ -1,0 +1,134 @@
+/* Gesamte TOC-Slide etwas kompakter */
+.reveal nav#TOC,
+.reveal nav[role="doc-toc"] {
+  font-size: 0.9em;
+  line-height: 1.2;
+}
+
+/* Liste ohne zu viel Einzug */
+.reveal nav#TOC ul,
+.reveal nav[role="doc-toc"] ul {
+  list-style-type: none !important;  /* Punkte entfernen */
+  padding-left: 0;
+}
+
+/* Abstände zwischen Einträgen */
+.reveal nav#TOC li,
+.reveal nav[role="doc-toc"] li {
+  margin-bottom: 4px;
+}
+
+/* Unterpunkte leicht einrücken */
+.reveal nav#TOC li ul,
+.reveal nav[role="doc-toc"] li ul {
+  padding-left: 0.6em;
+  margin-top: 2px;
+}
+
+/* nur oberste Ebene fett */
+.reveal nav#TOC > ul > li > a,
+.reveal nav[role="doc-toc"] > ul > li > a {
+  font-weight: 600;
+}
+
+
+/* Hauptkapitel: blau + fett */
+.reveal nav#TOC > ul > li > a,
+.reveal nav[role="doc-toc"] > ul > li > a {
+  font-weight: 700;
+  color: #0014A0 !important;   /* dein FH-Blau */
+}
+
+/* Unterkapitel: schwarz, normal */
+.reveal nav#TOC ul ul li a,
+.reveal nav[role="doc-toc"] ul ul li a {
+  font-weight: 400;
+  color: #000000 !important;
+}
+
+/* Zusätzlicher Abstand zwischen den Hauptkapiteln */
+.reveal nav#TOC > ul > li:not(:first-child),
+.reveal nav[role="doc-toc"] > ul > li:not(:first-child) {
+  margin-top: 0.7em;   /* nach Geschmack anpassen */
+}
+
+/* Unterpunkte etwas kompakter lassen */
+.reveal nav#TOC ul ul li,
+.reveal nav[role="doc-toc"] ul ul li {
+  margin-bottom: 3px;
+}
+
+/* TOC-Listen im Reveal-TOC: keine eigenen Marker/Striche */
+.reveal nav#TOC li::before,
+.reveal nav[role="doc-toc"] li::before,
+.reveal nav#TOC li::marker,
+.reveal nav[role="doc-toc"] li::marker {
+  content: none !important;
+}
+
+.deck-table {
+  width: 96%;
+  margin: 0.25em auto 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.72em;
+  line-height: 1.22;
+  table-layout: fixed;
+  box-shadow: 0 0 0 1px rgba(0, 20, 160, 0.18);
+}
+
+.deck-table th {
+  background: #0014a0;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.45em 0.6em;
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
+  text-align: left;
+  vertical-align: top;
+}
+
+.deck-table th:last-child {
+  border-right: 0;
+}
+
+.deck-table td {
+  padding: 0.42em 0.6em;
+  text-align: left;
+  vertical-align: top !important;
+  border-top: 1px solid rgba(0, 20, 160, 0.13);
+  height: auto;
+}
+
+.deck-table tbody tr:nth-child(even) {
+  background: rgba(0, 180, 230, 0.07);
+}
+
+.deck-table .time,
+.deck-table .key {
+  color: #0014a0;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.deck-table .muted {
+  color: #555;
+}
+
+.deck-table .break-row {
+  background: rgba(0, 180, 230, 0.16) !important;
+}
+
+.reveal .slide aside.footnotes,
+.reveal .slide .footnotes {
+  font-size: 0.42em;
+  color: #666;
+  line-height: 1.15;
+}
+
+.reveal .slide .footnotes ol {
+  margin-top: 0.4em;
+}
+
+.reveal .slide .footnotes li {
+  margin-bottom: 0;
+}

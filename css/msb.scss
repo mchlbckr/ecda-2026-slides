@@ -1,0 +1,318 @@
+/*-- scss:defaults --*/
+
+$blue-base: #0014a0;
+$yellow-base: #ffd200;
+$orange-base: #ff821e;
+$red-base: #eb0041;
+$cyan-base:#00b4e6;
+$green-base:#00965a;
+$black-base:#1d1d1b;
+$grey-base:#868686;
+
+
+$blue: #0014a0 !default;
+$yellow: #ffd200 !default;
+$orange: #ff821e !default;
+$red: #eb0041 !default;
+$cyan: #00b4e6;
+$green: #00965a !default;
+$black: #1d1d1b !default;
+$grey: #868686 !default;
+
+// $text-muted: #fff;
+
+:root{
+  /* base text & background for mermaid */
+  --mermaid-bg-color: transparent;
+  --mermaid-fg-color: #1d1d1b;            /* $black */
+  --mermaid-fg-color--lighter: #6e6e6e;   /* optional */
+  --mermaid-fg-color--lightest: #9c9c9c;  /* optional */
+  --mermaid-font-family: system-ui, sans-serif;
+
+  /* node / edge / label colors */
+  --mermaid-node-bg-color: rgba(0,20,160,.10); /* $blue @10% */
+  --mermaid-node-fg-color: #0014a0;            /* $blue */
+  --mermaid-edge-color:     #0014a0;           /* $blue */
+  --mermaid-label-bg-color: transparent;
+  --mermaid-label-fg-color: #0014a0;           /* $blue */
+}
+
+
+$callout-color-tip: #00965a;
+$callout-color-note: #00b4e6; 
+$callout-color-caution: #ff821e; 
+$callout-color-important: #eb0041;
+$callout-color-warning: #ffd200;
+
+
+
+$link-color: $blue-base;
+$presentation-font-size-root: 40px;
+$presentation-heading-color: $blue-base !default;
+$presentation-title-slide-text-align: left;
+// $presentation-heading-text-shadow: -1px -1px 0 rgba(0, 0, 0, .3);
+
+
+/*-- scss:rules --*/
+
+
+/*-- scss:rules --*/
+
+.quarto-title-authors {
+  align-items: start;
+  height: auto;
+  width: 1000px;
+  display: flex;
+  text-align: left;
+}
+
+.quarto-title-author {
+  align-items: start;
+  height: auto;
+  width: 1000px;
+}
+
+.quarto-title-author-name {
+ text-align: left;
+ align-items: start;
+ width: 1000px;
+ height: auto;
+}
+
+p.quarto-title-affiliation {
+ text-align: left;
+ align-items: start;
+ width: 1000px;
+ height: auto;
+}
+
+
+.reveal pre.cell-output code {
+	max-height: 800px;
+}
+
+
+
+.darksection {
+
+  .reveal .progress {
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .reveal .progress span {
+    background: #ffffff;
+  }
+  
+  .reveal .slide-number {
+    color: #ffffff !important;
+  }
+  .reveal .slide-menu-button {
+    color: #ffffff !important;
+  }
+
+  .reveal .slide-menu-button .fa-bars::before {
+    background-image: url('data:image/svg+xml,<svg ... />') !important;
+  }
+
+  .slide-logo {
+    display: none !important;
+  }
+
+  .reveal section,
+  .reveal section h1,
+  .reveal section h2,
+  .reveal section h3,
+  .reveal section p {
+    color: #ffffff !important;
+  }
+
+  .reveal .slide-menu-button .fa-bars::before {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="rgb(255, 255, 255)" class="bi bi-list" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg>') !important;
+}
+
+}
+
+
+/* --- Custom Bullet Design with FH Münster Blue --- */
+
+/* 1st level: blue squares */
+.reveal ul {
+  list-style-type: square;
+}
+
+.reveal ul > li {
+  color: inherit;
+}
+
+.reveal ul > li::marker {
+  color: $blue-base;   /* your defined color */
+}
+
+/* 2nd level: blue en dash */
+.reveal ul ul {
+  list-style: none;      /* remove default bullets */
+  margin-left: 1.5em;
+  padding-left: 0;
+}
+
+.reveal ul ul > li {
+  position: relative;
+  color: inherit;
+}
+
+.reveal ul ul > li::before {
+  content: "–";          /* en-dash */
+  color: $blue-base;
+  position: absolute;
+  left: -1.2em;
+  font-weight: 600;      /* optional: thicker dash */
+}
+
+/* 3rd level: blue round bullets */
+.reveal ul ul ul {
+  list-style-type: disc;
+  margin-left: 1.5em;
+}
+
+.reveal ul ul ul > li::marker {
+  color: $blue-base;
+}
+
+/* Remove 2nd-level dash for 3rd-level items */
+.reveal ul ul ul > li::before {
+  content: none;
+}
+
+
+/* --- Callouts: gleiche Schriftgröße wie normaler Text --- */
+.reveal .callout,
+.reveal .callout .callout-body,
+.reveal .callout .callout-content {
+  font-size: 0.9em !important;
+}
+
+
+
+/* ======================= PROMPT BLOCKS ======================= */
+/* Gilt nur in Reveal-Slides für Codeblöcke mit .prompt          */
+
+/* ÄUSSERE BOX: Rahmen, Hintergrund, Label, Copy-Button */
+.reveal .slides section div.sourceCode:has(> pre.prompt) {
+  position: relative;
+  margin: 1.5em 0;
+  max-width: 100%;
+
+  /* Optik der Box */
+  background: #f5f7ff;
+  border: 2px solid $orange-base;
+  border-radius: 0 6px 6px 6px;
+  box-shadow: none;
+
+  /* etwas Innenabstand, aber oben Platz für den Reiter lassen */
+  padding: 0.8em 1rem 0.8em 1rem;
+
+  /* WICHTIG: Label darf oben rausgucken */
+  overflow: visible;
+}
+
+/* INNERE SCROLL-FLÄCHE: das eigentliche pre.prompt */
+.reveal .slides section div.sourceCode:has(> pre.prompt) pre.prompt {
+  background: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+
+  font-size: 0.6em;
+  box-sizing: border-box;
+
+  /* Höhe begrenzen + NUR vertikal scrollen */
+  max-height: 60vh;          /* ggf. 55–65vh anpassen */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Inhalt im Prompt */
+.reveal .slides section div.sourceCode:has(> pre.prompt) pre.prompt code {
+  font-family: "Fira Code", Menlo, monospace;
+  font-size: inherit;
+  line-height: 1.3;
+  color: #001031;
+  white-space: pre-wrap;     /* umbrechen statt horizontal scrollen */
+  word-break: break-word;
+}
+
+/* PROMPT-Reiter oben AUF der Box */
+.reveal .slides section div.sourceCode:has(> pre.prompt)::before {
+  content: "PROMPT";
+  position: absolute;
+  top: 0;
+  left: -2px;
+  transform: translateY(-100%);   /* über den Rahmen schieben */
+  padding: 0.2em 0.8em;
+  background: $orange-base;
+  color: #ffffff;
+  border-radius: 6px 6px 0 0;
+  font-weight: 400;
+  font-size: 0.4em;
+  letter-spacing: 0.07em;
+}
+
+/* Copy-Button oben rechts auf der Box */
+.reveal .slides section div.sourceCode:has(> pre.prompt) .code-copy-button {
+  position: absolute;
+  top: 0.25em;
+  right: 0.5em;
+  background: $orange-base;
+  color: #ffffff;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  z-index: 10;
+}
+
+
+/* --- Reference list: two columns so it fits one slide --- */
+.reveal #refs {
+  font-size: 0.70em;
+  line-height: 1.4;
+  column-count: 2;
+  column-gap: 2em;
+  margin-top: 0.4em;
+}
+
+.reveal #refs .csl-entry {
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: 0.65em;
+}
+
+
+/* --- Fenced .prompt block: Quarto emits `pre.prompt` with no sourceCode wrapper,
+       so the `:has(> pre.prompt)` rules above never match it. --- */
+.reveal .slides section pre.prompt {
+  background: #f5f7ff;
+  border: 2px solid $orange-base;
+  border-radius: 6px;
+  padding: 0.7em 0.9em;
+  margin: 0.7em 0 0.3em 0;
+  max-height: 660px;   /* slide coordinates: reveal scales the 1080px slide, vh does not follow */
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-size: 0.42em;
+  line-height: 1.4;
+  box-shadow: none;
+}
+
+.reveal .slides section pre.prompt code {
+  font-family: "Fira Code", Menlo, Consolas, monospace;
+  color: #001031;
+  background: transparent;
+  white-space: pre-wrap;
+  word-break: break-word;
+  /* reveal.js caps `pre code` at 400px and scrolls it there; let the outer
+     `pre` own the scrolling instead, otherwise the block is silently clipped. */
+  max-height: none;
+  overflow: visible;
+}

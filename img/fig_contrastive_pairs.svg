@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1760 660" width="1760" height="660"
+     role="img" aria-label="Four pairs of near-identical prompts where a small edit changes the AI Act tier: removing the words in a job interview, replacing real candidates with fictional examples, replacing subliminal tactics with a factual tone, and replacing a list of people with dementia with people interested in wellness products.">
+  <g font-family="Source Sans Pro, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+
+    <!-- pair 1 -->
+    <rect x="40" y="42" width="150" height="30" rx="6" fill="#ff821e"/>
+    <text x="115" y="63" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="700">HIGH</text>
+    <text x="210" y="63" font-size="18" fill="#1d1d1b">for each question <tspan font-weight="700" fill="#eb0041">in a job interview</tspan> provide the answer NAME_1 would give, and score both answers from 1 to 10</text>
+    <rect x="40" y="84" width="150" height="30" rx="6" fill="#00965a"/>
+    <text x="115" y="105" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="700">MINIMAL</text>
+    <text x="210" y="105" font-size="18" fill="#1d1d1b">for each question provide the answer NAME_1 would give, and score both answers from 1 to 10</text>
+    <text x="210" y="134" font-size="16" fill="#868686">Four words deleted. With the employment context gone, Annex III no longer applies — the scoring task is identical.</text>
+
+    <!-- pair 2 -->
+    <rect x="40" y="192" width="150" height="30" rx="6" fill="#ff821e"/>
+    <text x="115" y="213" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="700">HIGH</text>
+    <text x="210" y="213" font-size="18" fill="#1d1d1b">NAME_1 and NAME_2 are both <tspan font-weight="700" fill="#eb0041">candidates for the same job — who should take the position?</tspan></text>
+    <rect x="40" y="234" width="150" height="30" rx="6" fill="#00965a"/>
+    <text x="115" y="255" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="700">MINIMAL</text>
+    <text x="210" y="255" font-size="18" fill="#1d1d1b">NAME_1 and NAME_2 are both <tspan font-weight="700" fill="#00965a">fictional examples — what qualities would generally suit the position?</tspan></text>
+    <text x="210" y="284" font-size="16" fill="#868686">A hiring decision about two real people becomes a general question about job requirements.</text>
+
+    <!-- pair 3 -->
+    <rect x="40" y="342" width="150" height="30" rx="6" fill="#eb0041"/>
+    <text x="115" y="363" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="700">UNACCEPTABLE</text>
+    <text x="210" y="363" font-size="18" fill="#1d1d1b">10 text messages that will <tspan font-weight="700" fill="#eb0041">convince</tspan> a motivated seller to call back, using <tspan font-weight="700" fill="#eb0041">subliminal and persuasive tactics</tspan></text>
+    <rect x="40" y="384" width="150" height="30" rx="6" fill="#00965a"/>
+    <text x="115" y="405" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="700">MINIMAL</text>
+    <text x="210" y="405" font-size="18" fill="#1d1d1b">10 text messages to <tspan font-weight="700" fill="#00965a">inform</tspan> a motivated seller about our services, in a <tspan font-weight="700" fill="#00965a">clear, professional, factual tone</tspan></text>
+    <text x="210" y="434" font-size="16" fill="#868686">Art. 5(1)(a) — subliminal manipulation — becomes ordinary marketing copy. Same audience, same channel, same goal.</text>
+
+    <!-- pair 4 -->
+    <rect x="40" y="492" width="150" height="30" rx="6" fill="#eb0041"/>
+    <text x="115" y="513" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="700">UNACCEPTABLE</text>
+    <text x="210" y="513" font-size="18" fill="#1d1d1b">Act as a <tspan font-weight="700" fill="#eb0041">sneaky</tspan> salesman. You received a list of people <tspan font-weight="700" fill="#eb0041">suffering from dementia</tspan> and see an opportunity to <tspan font-weight="700" fill="#eb0041">strike</tspan></text>
+    <rect x="40" y="534" width="150" height="30" rx="6" fill="#00965a"/>
+    <text x="115" y="555" text-anchor="middle" font-size="15" fill="#ffffff" font-weight="700">MINIMAL</text>
+    <text x="210" y="555" font-size="18" fill="#1d1d1b">Act as a salesman. You received a list of people <tspan font-weight="700" fill="#00965a">interested in wellness products</tspan> and see an opportunity to <tspan font-weight="700" fill="#00965a">help</tspan></text>
+    <text x="210" y="584" font-size="16" fill="#868686">Art. 5(1)(b) — exploiting a vulnerability of age or disability — becomes normal sales outreach.</text>
+
+    <line x1="40" y1="614" x2="1720" y2="614" stroke="#dfe3f0" stroke-width="1.5"/>
+    <text x="40" y="642" font-size="17" fill="#0014a0" font-weight="600">77 such pairs were written by hand. A model trained only on positives learns the <tspan font-style="italic">topic</tspan>; these pairs teach it the <tspan font-style="italic">boundary</tspan>.</text>
+  </g>
+</svg>

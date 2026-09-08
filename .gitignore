@@ -1,0 +1,15 @@
+.DS_Store
+.quarto/
+_output/
+ecda-2026.qmd
+img/conformal_risk_control.png
+img/eda_class_balance.png
+img/eda_umap_risk.png
+img/favicon.ico
+img/fig_data_provenance.svg
+img/governance_escalation_curve.png
+img/newdata_conformal_risk_control.png
+img/stage1_confusion.png
+
+/.quarto/
+**/*.quarto_ipynb
