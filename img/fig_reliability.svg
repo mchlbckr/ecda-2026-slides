@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1180 620" width="1180" height="620"
+     role="img" aria-label="Reliability plot of out-of-fold probabilities. For High risk, a predicted 0.28 is observed at 0.72 and a predicted 0.31 at 0.89; for Unacceptable, a predicted 0.38 is observed at 0.88. All points in the decision region lie far above the diagonal, so the model is strongly under-confident exactly where decisions are made.">
+  <defs>
+    <marker id="r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#868686"/>
+    </marker>
+  </defs>
+  <g font-family="Source Sans Pro, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+
+    <!-- under-confident region -->
+    <polygon points="110,540 590,60 110,60" fill="#eb0041" opacity="0.05"/>
+    <text x="122" y="84" font-size="16" fill="#eb0041" font-weight="700">under-confident region — the model understates the risk</text>
+
+    <!-- axes -->
+    <line x1="110" y1="540" x2="590" y2="540" stroke="#1d1d1b" stroke-width="2"/>
+    <line x1="110" y1="540" x2="110" y2="60"  stroke="#1d1d1b" stroke-width="2"/>
+    <line x1="110" y1="540" x2="590" y2="60"  stroke="#868686" stroke-width="2" stroke-dasharray="7 5"/>
+    <text x="600" y="66" font-size="15" fill="#868686">perfect calibration</text>
+
+    <g font-size="15" fill="#4a4a4a" text-anchor="middle">
+      <text x="110" y="566">0.0</text><text x="206" y="566">0.2</text><text x="302" y="566">0.4</text>
+      <text x="398" y="566">0.6</text><text x="494" y="566">0.8</text><text x="590" y="566">1.0</text>
+    </g>
+    <g font-size="15" fill="#4a4a4a" text-anchor="end">
+      <text x="98" y="546">0.0</text><text x="98" y="450">0.2</text><text x="98" y="354">0.4</text>
+      <text x="98" y="258">0.6</text><text x="98" y="162">0.8</text><text x="98" y="66">1.0</text>
+    </g>
+    <text x="350" y="596" font-size="17" fill="#1d1d1b" text-anchor="middle" font-weight="600">predicted probability</text>
+    <text x="40" y="300" font-size="17" fill="#1d1d1b" text-anchor="middle" font-weight="600" transform="rotate(-90 40 300)">observed frequency</text>
+
+    <!-- HIGH -->
+    <polyline points="112,538 184,316 243,195 260,113 519,111" fill="none" stroke="#ff821e" stroke-width="2.5" opacity="0.55"/>
+    <circle cx="112" cy="538" r="11" fill="#ff821e"/>
+    <circle cx="184" cy="316" r="6"  fill="#ff821e"/>
+    <circle cx="243" cy="195" r="8"  fill="#ff821e"/>
+    <circle cx="260" cy="113" r="6"  fill="#ff821e"/>
+    <circle cx="519" cy="111" r="5"  fill="#ff821e"/>
+
+    <!-- UNACCEPTABLE -->
+    <polyline points="110,540 181,420 291,115 307,156" fill="none" stroke="#eb0041" stroke-width="2.5" opacity="0.55"/>
+    <circle cx="110" cy="540" r="11" fill="#eb0041"/>
+    <circle cx="181" cy="420" r="4"  fill="#eb0041"/>
+    <circle cx="291" cy="115" r="5"  fill="#eb0041"/>
+    <circle cx="307" cy="156" r="4"  fill="#eb0041"/>
+
+    <!-- callouts on the two decisive points -->
+    <line x1="253" y1="195" x2="330" y2="215" stroke="#868686" stroke-width="1.5" marker-end="url(#r)"/>
+    <text x="338" y="212" font-size="16" fill="#1d1d1b" font-weight="700">predicted 0.28 → observed 0.72</text>
+    <text x="338" y="232" font-size="14" fill="#868686">n = 277 prompts</text>
+    <line x1="299" y1="112" x2="360" y2="95" stroke="#868686" stroke-width="1.5" marker-end="url(#r)"/>
+    <text x="368" y="92" font-size="16" fill="#1d1d1b" font-weight="700">predicted 0.38 → observed 0.88</text>
+    <text x="368" y="112" font-size="14" fill="#868686">n = 26 prompts</text>
+
+    <!-- legend + reading -->
+    <circle cx="690" cy="300" r="8" fill="#ff821e"/><text x="708" y="306" font-size="18" fill="#1d1d1b" font-weight="600">HIGH</text>
+    <circle cx="690" cy="334" r="8" fill="#eb0041"/><text x="708" y="340" font-size="18" fill="#1d1d1b" font-weight="600">UNACCEPTABLE</text>
+    <text x="690" y="372" font-size="14" fill="#868686">point size ~ log n · out-of-fold, base encoder · bins with n &lt; 5 omitted</text>
+
+    <rect x="660" y="400" width="490" height="150" rx="10" fill="#f4f6fd" stroke="#0014a0" stroke-width="1.5"/>
+    <text x="682" y="430" font-size="17" fill="#0014a0" font-weight="700">Why this matters</text>
+    <text x="682" y="458" font-size="15" fill="#4a4a4a">Every point in the decision region sits far above the</text>
+    <text x="682" y="478" font-size="15" fill="#4a4a4a">diagonal. The aggregate ECE still reads 0.005 — it is</text>
+    <text x="682" y="498" font-size="15" fill="#4a4a4a">dominated by the 97 % benign mass, exactly as accuracy is.</text>
+    <text x="682" y="524" font-size="15" fill="#0014a0" font-weight="600">The tuned threshold for High lands at 0.086, not 0.5.</text>
+    <text x="682" y="544" font-size="15" fill="#0014a0" font-weight="600">That is the miscalibration being absorbed.</text>
+  </g>
+</svg>

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1760 620" width="1760" height="620"
+     role="img" aria-label="The EU AI Act risk pyramid: unacceptable risk under Article 5 is prohibited, high risk under Article 6 and Annex III carries risk management and oversight duties, limited risk under Article 50 carries transparency duties, and everything else has no specific obligations. The figure shows possible responses rather than legally prescribed prompt actions.">
+  <g font-family="Source Sans Pro, system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+
+    <!-- pyramid -->
+    <polygon points="295,40 405,40 461,175 239,175"    fill="#eb0041"/>
+    <polygon points="239,175 461,175 517,310 183,310"  fill="#ff821e"/>
+    <polygon points="183,310 517,310 573,445 127,445"  fill="#ffd200"/>
+    <polygon points="127,445 573,445 629,580 71,580"   fill="#00965a"/>
+    <text x="350" y="124" text-anchor="middle" font-size="18" fill="#ffffff" font-weight="700" letter-spacing="0.5">UNACCEPTABLE</text>
+    <text x="350" y="262" text-anchor="middle" font-size="27" fill="#ffffff" font-weight="700">HIGH</text>
+    <text x="350" y="397" text-anchor="middle" font-size="27" fill="#1d1d1b" font-weight="700">LIMITED</text>
+    <text x="350" y="532" text-anchor="middle" font-size="27" fill="#ffffff" font-weight="700">MINIMAL</text>
+
+    <text x="1650" y="26" text-anchor="middle" font-size="15" fill="#868686" font-weight="700" letter-spacing="1.4">POSSIBLE RESPONSE</text>
+    <text x="1520" y="26" text-anchor="end" font-size="15" fill="#868686" font-weight="700" letter-spacing="1.4">WHEN IT BITES</text>
+    <text x="700" y="600" font-size="16" fill="#868686">Dates per the Digital Omnibus on AI, Regulation (EU) 2026/1744, in force 27 July 2026. Two further Art. 5 prohibitions apply from 2 Dec 2026.</text>
+
+    <!-- row 1 : Art. 5 -->
+    <rect x="700" y="50" width="210" height="38" rx="8" fill="#eb0041"/>
+    <text x="805" y="76" text-anchor="middle" font-size="19" fill="#ffffff" font-weight="700">Art. 5</text>
+    <text x="930" y="78" font-size="22" fill="#1d1d1b" font-weight="700">Prohibited practices</text>
+    <text x="1520" y="78" text-anchor="end" font-size="18" fill="#eb0041" font-weight="700">binding since 2 Feb 2025</text>
+    <text x="700" y="116" font-size="18" fill="#4a4a4a">social scoring · criminality prediction · face scraping · emotion recognition at work or school</text>
+    <text x="700" y="148" font-size="17" fill="#868686">must not be placed on the market, put into service, or used — fines up to €35 M / 7 % of turnover</text>
+    <rect x="1560" y="81" width="180" height="54" rx="10" fill="#eb0041"/>
+    <text x="1650" y="116" text-anchor="middle" font-size="21" fill="#ffffff" font-weight="700">Refuse</text>
+
+    <!-- row 2 : Art. 6 + Annex III -->
+    <rect x="700" y="185" width="210" height="38" rx="8" fill="#ff821e"/>
+    <text x="805" y="211" text-anchor="middle" font-size="19" fill="#ffffff" font-weight="700">Art. 6 + Annex III</text>
+    <text x="930" y="213" font-size="22" fill="#1d1d1b" font-weight="700">High-risk areas of use</text>
+    <text x="1520" y="213" text-anchor="end" font-size="18" fill="#ff821e" font-weight="700">deferred to 2 Dec 2027</text>
+    <text x="700" y="251" font-size="18" fill="#4a4a4a">employment · creditworthiness · education · law enforcement · migration · biometrics</text>
+    <text x="700" y="283" font-size="17" fill="#868686">risk management · data governance · logging · human oversight · conformity assessment</text>
+    <rect x="1560" y="216" width="180" height="54" rx="10" fill="#ff821e"/>
+    <text x="1650" y="251" text-anchor="middle" font-size="19" fill="#ffffff" font-weight="700">Policy check</text>
+
+    <!-- row 3 : Art. 50 -->
+    <rect x="700" y="320" width="210" height="38" rx="8" fill="#ffd200"/>
+    <text x="805" y="346" text-anchor="middle" font-size="19" fill="#1d1d1b" font-weight="700">Art. 50</text>
+    <text x="930" y="348" font-size="22" fill="#1d1d1b" font-weight="700">Transparency obligations</text>
+    <text x="1520" y="348" text-anchor="end" font-size="18" fill="#0014a0" font-weight="700">applicable since 2 Aug 2026</text>
+    <text x="700" y="386" font-size="18" fill="#4a4a4a">a chatbot must disclose that it is AI · synthetic content must be machine-readably marked</text>
+    <text x="700" y="418" font-size="17" fill="#868686">inform the person interacting; label the output</text>
+    <rect x="1560" y="351" width="180" height="54" rx="10" fill="#ffd200"/>
+    <text x="1650" y="386" text-anchor="middle" font-size="21" fill="#1d1d1b" font-weight="700">Disclose</text>
+
+    <!-- row 4 : rest -->
+    <rect x="700" y="455" width="210" height="38" rx="8" fill="#00965a"/>
+    <text x="805" y="481" text-anchor="middle" font-size="19" fill="#ffffff" font-weight="700">Art. 95 · voluntary</text>
+    <text x="930" y="483" font-size="22" fill="#1d1d1b" font-weight="700">Everything else</text>
+    <text x="1520" y="483" text-anchor="end" font-size="18" fill="#868686" font-weight="700">no deadline</text>
+    <text x="700" y="521" font-size="18" fill="#4a4a4a">no risk tier of its own — and the overwhelming majority of enterprise chatbot traffic</text>
+    <text x="700" y="553" font-size="17" fill="#868686">voluntary codes of conduct</text>
+    <rect x="1560" y="486" width="180" height="54" rx="10" fill="#00965a"/>
+    <text x="1650" y="521" text-anchor="middle" font-size="21" fill="#ffffff" font-weight="700">Continue</text>
+  </g>
+</svg>
