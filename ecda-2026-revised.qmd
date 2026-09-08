@@ -759,18 +759,43 @@ Aligning the prediction target with the response policy improves performance mor
 
 ### Probabilities understate risk near the decision threshold
 
-![Source: authors’ analysis of out-of-fold predictions.](img/fig_reliability.svg){width=88% fig-align="center" fig-alt="Reliability plot showing that predicted probabilities understate the observed frequency of High and Unacceptable labels in the decision region."}
+:::: {.columns}
+::: {.column width="61%"}
+
+![Source: authors’ analysis of out-of-fold predictions.](img/fig_reliability.svg){width=78% fig-align="center" fig-alt="Reliability plot for High and Unacceptable prompts. Points above the diagonal have a higher observed class frequency than their mean predicted probability."}
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="36%"}
+
+**How to read the plot**
+
+- one point represents one 0.1-wide bin of out-of-fold predictions
+- horizontal position: mean predicted probability in the bin
+- vertical position: observed share of the class in the bin
+- larger points contain more prompts; bins with fewer than five prompts are omitted
 
 ::: {.callout-warning .fragment}
-For one High-risk bin, a predicted probability of 0.28 corresponds to an observed frequency of 0.72. The thresholds are therefore specific to this selected corpus.
+**Result.** In one High-risk bin, the model assigns an average probability of 0.28, but 72% of the prompts in that bin are High ($n=277$).
+
+The overall expected calibration error of 0.005 conceals this rare-class error because Minimal prompts dominate the corpus.
 :::
+
+:::
+::::
 
 ::: {.notes}
 **Say**
 
+- These are probability bins, not iterations or cross-validation rounds.
+- The lines connect the bins in increasing order of predicted probability. They do not represent a temporal sequence.
 - The ranking model can still be useful when its probability estimates are imperfect.
 - The error matters around the point where the system changes its response policy.
 - In this bin, a predicted High probability of 0.28 corresponds to an observed frequency of 0.72.
+- The overall expected calibration error is only 0.005 because Minimal prompts dominate the corpus. That aggregate value conceals the rare-class error visible here.
 - Thresholds compensate for the error only on this study corpus. They must be estimated again with local deployment data.
 :::
 
@@ -1106,11 +1131,31 @@ All consensus-severe prompts in this diagnostic set are flagged. The classifier 
 
 ### Calibration detail
 
-![Source: authors’ analysis of out-of-fold predictions.](img/fig_reliability.svg){width=88% fig-align="center" fig-alt="Reliability plot for High and Unacceptable probabilities on out-of-fold predictions."}
+:::: {.columns}
+::: {.column width="61%"}
+
+![Source: authors’ analysis of out-of-fold predictions.](img/fig_reliability.svg){width=78% fig-align="center" fig-alt="Reliability plot for High and Unacceptable prompts. Each point is one probability bin."}
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="36%"}
+
+**One point**
+
+- one 0.1-wide probability bin
+- horizontal: mean predicted probability
+- vertical: observed class frequency
+- size: number of prompts on a logarithmic scale
 
 ::: {.callout-warning}
 The aggregate expected calibration error is 0.005 because Minimal prompts dominate the corpus. In the decision region, predicted probabilities substantially understate observed frequencies. Aggregate calibration metrics can therefore hide the error that matters operationally.
 :::
+
+:::
+::::
 
 ### Features and evaluation protocol
 
