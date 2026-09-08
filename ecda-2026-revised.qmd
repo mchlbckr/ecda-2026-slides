@@ -908,14 +908,22 @@ These results estimate performance on a selected consensus corpus. They do not p
 **How to read the plot**
 
 - four observed training sizes: 50, 100, 200, and 400 severe examples
-- each point shows mean AP across five random subsamples
-- vertical bars show one standard deviation across the five draws
+- points show mean AP across five random subsamples; bars show one standard deviation
 - the solid line covers the observed range; the dashed line extrapolates beyond it
 
-::: {.callout-important .fragment}
-**Result.** Average precision continues to increase across the observed range. The fitted curve gains about 0.09 AP with each doubling of the severe training set.
+**Log-linear fit**
 
-AP 0.75 corresponds to about **1,160 severe examples**, but this estimate extrapolates beyond the largest observed training set of 400.
+$$
+\begin{aligned}
+AP &= -0.187+0.133\ln(n) \\
+R^2 &= 0.979
+\end{aligned}
+$$
+
+Doubling the training set adds $0.133\ln(2)=0.092$ AP.
+
+::: {.callout-important .fragment}
+**Planning estimate.** AP 0.75 corresponds to about **1,160 severe examples**, but this extrapolates beyond the largest observed training set of 400.
 :::
 
 :::
