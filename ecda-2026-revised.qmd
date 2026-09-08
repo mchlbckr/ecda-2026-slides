@@ -1157,34 +1157,6 @@ Half of the discarded disagreements received at least one severe vote. At the fi
 
 All consensus-severe prompts in this diagnostic set are flagged. The classifier therefore performs best on the cases that the labelers also found easiest.
 
-### Calibration detail
-
-:::: {.columns}
-::: {.column width="61%"}
-
-![Source: authors’ analysis of out-of-fold predictions.](img/fig_reliability.svg){width=78% fig-align="center" fig-alt="Reliability plot for High and Unacceptable prompts. Each point is one probability bin."}
-
-:::
-
-::: {.column width="3%"}
-:::
-
-::: {.column width="36%"}
-
-**One point**
-
-- one 0.1-wide probability bin
-- horizontal: mean predicted probability
-- vertical: observed class frequency
-- size: number of prompts on a logarithmic scale
-
-::: {.callout-warning}
-The aggregate expected calibration error is 0.005 because Minimal prompts dominate the corpus. In the decision region, predicted probabilities substantially understate observed frequencies. Aggregate calibration metrics can therefore hide the error that matters operationally.
-:::
-
-:::
-::::
-
 ### Features and evaluation protocol
 
 :::: {.columns}
