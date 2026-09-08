@@ -3,7 +3,6 @@ title: "Inferring AI-Act-Relevant<br>Application Contexts from<br>Prompts for En
 subtitle: "AI and neural networks, 10 September 2026, ECDA 2026, Stralsund"
 author: "**Michael Bücker**, Christoph Buchmüller,<br>Jan Wobker, Leonard Rink<br><br>FH Münster"
 footer: "AI-Act-Relevant Application Contexts from Prompts, Michael Bücker, ECDA 2026"
-number-offset: [-1,0,0]
 execute:
   echo: false
   warning: false
