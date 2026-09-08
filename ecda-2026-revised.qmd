@@ -992,7 +992,7 @@ Web: [www.buecker.ms](https://www.buecker.ms)
 
 ::: {.slides-link}
 **Slides**  
-[mchlbckr.github.io/ecda-2026-slides](https://mchlbckr.github.io/ecda-2026-slides/)
+[buecker.ms/ecda-2026-slides](https://buecker.ms/ecda-2026-slides/)
 :::
 
 :::

@@ -2,7 +2,7 @@
 
 Slides for “Inferring AI-Act-Relevant Application Contexts from Prompts for Enterprise Chatbot Governance”, presented at ECDA 2026.
 
-[Open the presentation](https://mchlbckr.github.io/ecda-2026-slides/)
+[Open the presentation](https://buecker.ms/ecda-2026-slides/)
 
 ## Render locally
 
