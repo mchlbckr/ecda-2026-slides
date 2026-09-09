@@ -467,16 +467,16 @@ The high-dimensional representation motivates the comparison but does not determ
 **Choosing an operating point**
 
 - sigmoid calibration fitted within the training data [@platt]
-- out-of-fold probabilities for retrieved prompts
-- 40 stratified splits with 50% for tuning and 50% for evaluation
-- class thresholds selected by macro-F1 on the tuning half
-- recall, precision, and flagged share reported on the other half
+- the largest-probability rule is rejected because Minimal dominates
+- class thresholds selected by macro-F1 on one half of the out-of-fold scores
+- recall, precision, and flagged share evaluated on the other half
+- results averaged across 40 stratified splits of the retrieved prompts
 
 :::
 ::::
 
 ::: {.callout-note .fragment}
-Every classifier score is out of fold. Threshold selection and threshold evaluation use different halves of those scores.
+Average precision evaluates ranking. Recall and precision are measured only after threshold selection on a separate half of the out-of-fold scores.
 :::
 
 ::: {.notes}
@@ -486,29 +486,8 @@ Every classifier score is out of fold. Threshold selection and threshold evaluat
 - Each prompt is scored once per repetition by a model that did not train on that prompt.
 - The classifier comparison uses average precision because it evaluates the ranking without choosing a threshold.
 - Paired bootstrap samples apply the same sampled rows to both models, so the interval refers to their difference.
+- The largest-probability rule fails because the Minimal category dominates. We therefore select separate thresholds for the rare categories.
 - For the operating point, we use calibrated out-of-fold probabilities from the retrieved subset. In each of 40 splits, one half selects the thresholds by macro-F1 and the other half evaluates recall, precision, and the share of flagged prompts.
-:::
-
-### Decision rules under extreme imbalance
-
-- taking the category with the largest probability almost always selects Minimal
-- thresholds are therefore chosen separately for the rare categories
-- the most severe category that clears its threshold determines the routing level
-- a rule check may raise, but never lower, the routing level
-- uncertain requests trigger an automatic clarifying question
-
-::: {.callout-important}
-Ranking and deployment are evaluated separately: average precision for ranking, then recall and precision at a validated operating point.
-:::
-
-::: {.notes}
-**Say**
-
-- At this prevalence, the largest-probability rule fails because the Minimal category dominates.
-- We therefore choose category-specific thresholds rather than using the largest probability.
-- If several category thresholds are exceeded, the most severe category determines the routing level.
-- The rules are conservative: they may increase the routing level, but they cannot reduce it.
-- Missing context is handled in the interaction itself through a clarifying question, not through synchronous human review.
 - A deployment still needs local labels and new thresholds because both prevalence and score calibration can change.
 :::
 
@@ -517,8 +496,8 @@ Ranking and deployment are evaluated separately: average precision for ranking, 
 :::: {.columns}
 ::: {.column width="45%"}
 
-- a classifier assigns a severity score before LLM inference
-- category thresholds select an automated response policy
+- class scores and thresholds select the most severe applicable response
+- a rule check may raise, but never lower, that response level
 - missing context triggers a clarifying question
 - higher scores can disable tools or lead to a refusal
 - sampled logs enter offline review for monitoring and new labels
@@ -540,7 +519,8 @@ Authors’ illustration of the proposed deployment design.
 **Say**
 
 - This is how the statistical model could enter an enterprise chatbot.
-- The screening layer runs before model inference and selects an automated response policy.
+- The screening layer runs before model inference. If several thresholds are exceeded, the most severe category determines the response.
+- Rule checks are conservative: they may raise the response level, but cannot lower it.
 - When the prompt lacks relevant context, the chatbot asks a follow-up question.
 - A higher score can activate a safe mode, disable tools, or refuse an explicit prohibited use.
 - People review only a selected offline sample. Human review does not sit in the live chat path.
