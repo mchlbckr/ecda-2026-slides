@@ -2180,83 +2180,6 @@ display:block!important;
 <h1><span class="header-section-number">3</span> Results</h1>
 
 </section>
-<section id="non-linear-classifiers-perform-best" class="slide level3">
-<h3>Non-linear classifiers perform best</h3>
-<div class="cell">
-<div class="cell-output-display">
-<table class="table deck-kable table-striped table-condensed caption-top" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Classifier</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Severe AP</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Difference from SVM</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left; font-weight: bold;">RBF SVM</td>
-<td style="text-align: right; font-weight: bold;">0.640</td>
-<td style="text-align: right; font-weight: bold;">reference</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">tuned LightGBM</td>
-<td style="text-align: right;">0.604</td>
-<td style="text-align: right;">−0.037</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">random forest</td>
-<td style="text-align: right;">0.546</td>
-<td style="text-align: right;">−0.095</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">logistic regression</td>
-<td style="text-align: right;">0.306</td>
-<td style="text-align: right;">−0.333</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">linear SVM</td>
-<td style="text-align: right;">0.298</td>
-<td style="text-align: right;">−0.342</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="fragment">
-<div class="callout callout-important callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Important</strong></p>
-</div>
-<div class="callout-content">
-<p>The RBF SVM reaches 0.640 average precision. The main contrast is non-linear versus linear; its lead over tuned LightGBM is 0.037.</p>
-</div>
-</div>
-</div>
-</div>
-<aside class="notes">
-<p><strong>Say</strong></p>
-<ul>
-<li>Non-linearity matters. Both linear models reach only about 0.30 average precision.</li>
-<li>The RBF SVM performs best at 0.640.</li>
-<li>Its advantage over tuned LightGBM is real but modest at 0.037 across the paired resamples.</li>
-<li>The complete request path takes 55 milliseconds on CPU. The SVM itself accounts for less than one millisecond.</li>
-</ul>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
-</section>
 <section id="retrieval-fine-tuning-does-not-improve-classification" class="slide level3">
 <h3>Retrieval fine-tuning does not improve classification</h3>
 <div class="columns">
@@ -2343,35 +2266,27 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
-<section id="a-binary-target-matches-the-governance-action" class="slide level3">
-<h3>A binary target matches the governance action</h3>
+<section id="target-definition-matters-more-than-classifier-choice" class="slide level3">
+<h3>Target definition matters more than classifier choice</h3>
 <div class="columns">
-<div class="column" style="width:43%;">
-<p><strong>Why combine the severe classes?</strong></p>
-<ul>
-<li>High and Unacceptable remain distinct legal categories</li>
-<li>both categories activate additional policy handling in the proposed workflow</li>
-<li>label disagreement is most common at this boundary</li>
-</ul>
-</div><div class="column" style="width:3%;">
-
-</div><div class="column fragment" style="width:54%;">
+<div class="column" style="width:39%;">
+<p><strong>Prediction target</strong></p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="table deck-kable table-striped table-condensed caption-top" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Prediction target</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Target</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">Severe AP</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">four categories, severe probabilities added</td>
+<td style="text-align: left;">four categories</td>
 <td style="text-align: right;">0.518</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; font-weight: bold;">binary severe versus other</td>
+<td style="text-align: left; font-weight: bold;">severe versus other</td>
 <td style="text-align: right; font-weight: bold;">0.640</td>
 </tr>
 </tbody>
@@ -2379,10 +2294,54 @@ display:block!important;
 </div>
 </div>
 <ul>
-<li>difference: <strong>+0.121 AP</strong></li>
-<li>95% bootstrap interval: <strong>[+0.089, +0.155]</strong></li>
-<li>binary model better in all <strong>2,000 paired resamples</strong></li>
+<li>High and Unacceptable remain legally distinct</li>
+<li>both first activate additional policy handling</li>
+<li>binary target improvement: <strong>+0.121 AP</strong></li>
 </ul>
+</div><div class="column" style="width:3%;">
+
+</div><div class="column fragment" style="width:58%;">
+<p><strong>Classifier comparison using the binary target</strong></p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table deck-kable table-striped table-condensed caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Classifier</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Severe AP</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Difference from RBF SVM</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left; font-weight: bold;">RBF SVM</td>
+<td style="text-align: right; font-weight: bold;">0.640</td>
+<td style="text-align: right; font-weight: bold;">reference</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">tuned LightGBM</td>
+<td style="text-align: right;">0.604</td>
+<td style="text-align: right;">−0.037</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">random forest</td>
+<td style="text-align: right;">0.546</td>
+<td style="text-align: right;">−0.095</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">logistic regression</td>
+<td style="text-align: right;">0.306</td>
+<td style="text-align: right;">−0.333</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">linear SVM</td>
+<td style="text-align: right;">0.298</td>
+<td style="text-align: right;">−0.342</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div></div>
 <div class="fragment">
 <div class="callout callout-important callout-titled callout-style-default">
@@ -2394,7 +2353,7 @@ display:block!important;
 <p><strong>Important</strong></p>
 </div>
 <div class="callout-content">
-<p>Aligning the prediction target with the response policy improves performance more than any change of classifier or embedding model in this study.</p>
+<p>Changing the target adds 0.121 AP. Within the binary target, the RBF SVM leads tuned LightGBM by 0.037.</p>
 </div>
 </div>
 </div>
@@ -2405,7 +2364,10 @@ display:block!important;
 <li>The legal distinction remains important, but both labels first activate the more cautious response policy.</li>
 <li>A four-category classifier must learn a boundary supported by only 52 Unacceptable examples.</li>
 <li>Training directly for severe versus other increases average precision from 0.518 to 0.640.</li>
-<li>This is the largest measured improvement in the study.</li>
+<li>The 95% bootstrap interval for this improvement is from 0.089 to 0.155. The binary model performs better in all 2,000 paired resamples.</li>
+<li>Every classifier in the right-hand table uses this binary target, the same embeddings, and the same cross-validation folds.</li>
+<li>The RBF SVM performs best. Its lead over tuned LightGBM is 0.037, while both linear models reach only about 0.30 average precision.</li>
+<li>The complete request path takes 55 milliseconds on CPU. The SVM itself accounts for less than one millisecond.</li>
 </ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
