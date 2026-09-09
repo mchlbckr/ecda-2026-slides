@@ -607,58 +607,6 @@ Fine-tuning helps the retriever find similar severe prompts, but does not improv
 - Retrieval and classification need different structure. Training for one task does not automatically help the other.
 :::
 
-### Sampling origin changes the reported performance
-
-Both subsets contain observed prompts and use the same model scores. Synthetic variants appear only in retriever fine-tuning.
-
-:::: {.columns}
-::: {.column width="56%"}
-
-```{r}
-slide_table(
-  data.frame(
-    `Sampling pathway` = c("initial workbook sample", "retrieval-selected sample"),
-    n = c("3,047", "57,878"),
-    `Severe AP` = c("0.881", "0.518"),
-    `Unacceptable AP` = c("0.920", "0.103"),
-    check.names = FALSE
-  ),
-  align = c("l", "r", "r", "r")
-)
-```
-
-:::
-
-::: {.column width="3%"}
-:::
-
-::: {.column .fragment width="41%"}
-
-**Review and composition**
-
-- every High and Unacceptable label was human-reviewed
-- Limited and Minimal labels were checked on sampled rows
-- the initial workbook sample contains **73%** of all Unacceptable cases
-- pooled Unacceptable AP is **0.62**, compared with **0.10** on retrieval-selected rows
-
-:::
-::::
-
-::: {.callout-warning .fragment}
-Evaluation on the mixed corpus would overstate performance on the cases encountered by the retrieval pipeline by about six times.
-:::
-
-::: {.notes}
-**Say**
-
-- This is the most important evaluation result in the talk.
-- Both subsets contain observed prompts. The split captures how each row entered the corpus, not whether it is synthetic.
-- Every severe label was reviewed by a person. Review of Limited and Minimal labels used samples.
-- The initial workbook sample gives an Unacceptable average precision of 0.92. The retrieval-selected sample gives 0.10.
-- Mixing the two would report 0.62 and hide the difference in difficulty.
-- The result shows why data provenance must remain part of the evaluation protocol.
-:::
-
 ### A binary target matches the governance action
 
 :::: {.columns}
@@ -1093,6 +1041,58 @@ slide_table(
 ```
 
 The evidence does not support further model complexity as the first priority. Additional adjudicated severe examples are more likely to improve the system.
+
+### Sampling origin changes the reported performance
+
+Both subsets contain observed prompts and use the same model scores. Synthetic variants appear only in retriever fine-tuning.
+
+:::: {.columns}
+::: {.column width="56%"}
+
+```{r}
+slide_table(
+  data.frame(
+    `Sampling pathway` = c("initial workbook sample", "retrieval-selected sample"),
+    n = c("3,047", "57,878"),
+    `Severe AP` = c("0.881", "0.518"),
+    `Unacceptable AP` = c("0.920", "0.103"),
+    check.names = FALSE
+  ),
+  align = c("l", "r", "r", "r")
+)
+```
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column .fragment width="41%"}
+
+**Review and composition**
+
+- every High and Unacceptable label was human-reviewed
+- Limited and Minimal labels were checked on sampled rows
+- the initial workbook sample contains **73%** of all Unacceptable cases
+- pooled Unacceptable AP is **0.62**, compared with **0.10** on retrieval-selected rows
+
+:::
+::::
+
+::: {.callout-warning .fragment}
+Evaluation on the mixed corpus would overstate performance on the cases encountered by the retrieval pipeline by about six times.
+:::
+
+::: {.notes}
+**Say**
+
+- This is the most important evaluation result in the talk.
+- Both subsets contain observed prompts. The split captures how each row entered the corpus, not whether it is synthetic.
+- Every severe label was reviewed by a person. Review of Limited and Minimal labels used samples.
+- The initial workbook sample gives an Unacceptable average precision of 0.92. The retrieval-selected sample gives 0.10.
+- Mixing the two would report 0.62 and hide the difference in difficulty.
+- The result shows why data provenance must remain part of the evaluation protocol.
+:::
 
 ### Probabilities understate risk near the decision threshold
 
