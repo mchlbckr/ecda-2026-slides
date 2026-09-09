@@ -86,193 +86,161 @@ The same interface can summarise a policy or rank job applicants. Governance mus
 - This creates the need for a request-level signal before the model produces an answer.
 :::
 
-### Risk categories in the EU AI Act
+### Risk categories in the EU AI Act {#ai-act-risk-categories}
 
-![Authors’ illustration based on the legal sources cited below.](img/fig_ai_act_tiers.svg){width=88% fig-align="center" fig-alt="EU AI Act risk pyramid with four categories, legal basis, main obligations, dates of application, and possible routing actions."}
-
-::: {.callout-note}
-The category of an AI system follows from its **intended purpose and use**. A prompt can provide evidence about that context, but cannot establish the legal category on its own [@aiact].
-:::
+![Authors’ illustration based on the legal sources cited below.](img/fig_ai_act_tiers.svg){width=94% fig-align="center" fig-alt="EU AI Act risk pyramid with four categories, legal basis, main obligations, dates of application, and possible routing actions."}
 
 ::: {.notes}
 **Say**
 
-- The figure summarises the four categories and illustrates possible organisational responses. The Act itself does not prescribe prompt-level routing.
+- The figure summarises the four categories. I will only use it to establish the regulatory vocabulary for the rest of the talk.
 - Article 5 covers prohibited practices. Annex III lists high-risk areas of use. Article 50 contains transparency duties.
-- The Digital Omnibus moved the Annex III date to 2 December 2027. Article 50 has applied since 2 August 2026 [@omnibus].
-- Our labels are screening labels derived from these provisions. They are not legal decisions about deployed systems.
+- The category follows from the intended purpose and use of an AI system. The next slide explains why a prompt cannot establish that category on its own.
+- The figure also shows possible organisational responses. The AI Act itself does not prescribe prompt-level routing.
 :::
 
-### A prompt does not contain the deployment context
-
-The Act regulates AI systems that are placed on the market, put into service, or used [@aiact, Art. 5, 6]. A request for emotion-recognition code does not tell us whether anyone will deploy that code at work, in a school, or only in a local demonstration.
-
-![Authors’ illustration.](img/fig_intent_gap.svg){width=92% fig-align="center" fig-alt="A prompt is observed while the intended purpose and deployment context remain unknown. Different contexts lead to different AI Act categories."}
-
-::: {.callout-important}
-We therefore interpret the score as a **policy signal**. The chatbot can ask for missing context or switch to a constrained response policy.
-:::
-
-::: {.notes}
-**Say**
-
-- This is the central limitation of the study.
-- We observe the text, but usually do not observe who will deploy the resulting system, where it will be used, or who will be affected.
-- The same sentence can therefore be associated with different legal contexts.
-- The output can support automated prompt screening. It cannot replace a contextual legal assessment.
-:::
-
-### Research question
-
-**How reliably can a prompt-level model identify requests associated with severe AI Act use cases when those cases are rare and the deployment context is missing?**
+### AI Act risk depends on context beyond the prompt
 
 :::: {.columns}
-::: {.column width="48%"}
+::: {.column width="39%"}
 
-**Input and target**
+**Four regulatory categories**
 
-- one prompt without conversation history or enterprise metadata
-- four AI Act risk categories
-- High and Unacceptable form the severe screening target
+- **Minimal:** no specific obligations
+- **Limited:** transparency obligations
+- **High:** requirements for listed uses
+- **Unacceptable:** prohibited practices
+
+The category follows from the AI system’s **intended purpose and use** [@aiact].
 
 :::
 
 ::: {.column width="4%"}
 :::
 
-::: {.column width="48%"}
+::: {.column .fragment width="57%"}
 
-**Scope of the claim**
+**One prompt, several possible contexts**
 
-- the model estimates whether a prompt may indicate a severe use case
-- the study evaluates screening performance and decision thresholds
-- the model does not determine legal compliance
+*“Write code for emotion recognition.”*
+
+- a local technical demonstration
+- use in a school
+- use in the workplace
+
+The prompt alone does not reveal who will deploy the system, where it will operate, or who it will affect.
 
 :::
 ::::
 
+::: {.callout-important .fragment}
+The classifier estimates a **policy signal from the prompt**. It does not determine the legal category of a deployed AI system.
+:::
+
 ::: {.notes}
 **Say**
 
-- The question deliberately reflects the two main difficulties: severe examples are rare, and prompts often omit the deployment context.
-- We evaluate the prompt as a screening signal, not as a complete legal case description.
-- The four legal categories remain visible, but High and Unacceptable form the severe target for the initial routing decision.
-- The claim concerns statistical screening performance and threshold selection. It does not concern a complete legal compliance process.
+- The AI Act distinguishes four regulatory categories. These categories depend on the intended purpose and actual use of an AI system.
+- The emotion-recognition example shows why prompt classification cannot reproduce a legal assessment. The same request can describe a harmless demonstration or a prohibited use at work or in education.
+- We observe the request text, but usually not the deployment setting or affected people.
+- The model therefore provides a screening signal. It can trigger a request for more context or a more constrained response policy.
+- The detailed legal overview and the full context diagram are available in the backup.
 :::
 
-### Existing guardrails address different targets
+### Research question and gap
 
 :::: {.columns}
-::: {.column width="57%"}
+::: {.column width="49%"}
 
-**Published evidence**
+**Research question**
 
-- **Ayub and Majumdar (2024) — prompt injection:** malicious prompts intended to override developer instructions. Random forest with OpenAI embeddings reaches F1 0.868 on 467,057 prompts (23.5% malicious) [@embinject].
-- **Zheng et al. (2024) — unsafe-content filtering:** safe versus unsafe prompts and conversation snippets from AEGIS. Fine-tuned Sentence-BERT reaches AUPRC 0.946 and F1 0.89 on 9,674 examples (about 63% unsafe) [@bertguard].
-- **Ahmed et al. (2026) — jailbreak detection:** adversarial prompts intended to bypass safety controls, including obfuscated and structured attacks. BGE embeddings with logistic regression reach 94.7% recall at 48.9 ms on 30,568 prompts (50.9% harmful) [@reflexguard].
+How reliably can a prompt-level model identify requests associated with severe AI Act use cases when those cases are rare and deployment context is missing?
+
+**Study target**
+
+- one prompt without conversation history or enterprise metadata
+- High and Unacceptable form the severe screening target
+- performance concerns screening, not legal compliance
 
 :::
 
 ::: {.column width="4%"}
 :::
 
-::: {.column .fragment width="39%"}
+::: {.column .fragment width="47%"}
 
-**What transfers**
+**Earlier guardrail studies**
 
-- Dense embeddings with small classifiers support fast local screening.
-- The threshold governs missed cases and false alarms.
+- detect prompt injection, jailbreaks, or unsafe content
+- report positive prevalences from 23.5% to about 63%
+- show that embeddings with small classifiers can support fast screening [@embinject; @bertguard; @reflexguard]
 
-**What remains open**
+**This study**
 
-- Earlier studies predict attacks or unsafe content—not application context.
-- Positive prevalence ranges from 23.5% to about 63%.
-- This study: possible regulatory use, **0.97% severe prompts**, and missing deployment context.
+- predicts possible regulatory application context
+- contains only **0.97% severe prompts**
+- must work when relevant context may be absent
 
 :::
 ::::
 
 ::: {.research-takeaway .fragment}
-**Take-away:** Prior work validates the architecture—not performance with rare positives and missing deployment context.
+Prior work supports the architecture. Its reported performance does not establish performance for this target and prevalence.
 :::
 
 ::: {.notes}
 **Say**
 
-- These three studies show that embeddings with relatively small classifiers can provide effective and fast prompt screening.
-- Ayub and Majumdar study prompt injection: deliberately crafted prompts that try to override developer instructions.
-- Zheng and colleagues study broad safe-versus-unsafe content in AEGIS, including categories such as hate, violence, sexual content, criminal planning, and self-harm.
-- Reflex-Guard focuses on jailbreaks and adversarial safety-bypass prompts, including obfuscated and structured attacks. Its logistic regression configuration reaches 94.7 percent recall at about 49 milliseconds mean latency.
-- I would not describe these studies simply as hacking. Prompt injection and jailbreaks can be security attacks, whereas unsafe-content filtering is a broader content-safety task.
-- These numbers should not be compared as a ranking. The labels, prevalence, datasets, and evaluation protocols differ.
-- The literature supports our architectural choice, but it does not answer whether prompt text can indicate a possible AI Act use when severe examples are rare and deployment context is missing.
+- Existing prompt guardrails address related but different classification problems.
+- Published studies focus on attacks or unsafe content, and their positive classes are much more common than the severe cases in our corpus.
+- They support the use of dense embeddings and compact classifiers for fast screening.
+- Their performance figures do not answer our research question because the label meaning, prevalence, data, and evaluation conditions differ.
+- Our claim remains narrow: we evaluate a prompt-level screening signal, not a complete legal compliance process.
+- The detailed comparison of the three studies is available in the backup.
 :::
 
 # Data and methods {background-color="#0014a0" data-state="darksection"}
 
-### Synthetic generation or observed prompts?
+### Observed prompts provide variation, but rare cases require targeted retrieval
 
 :::: {.columns}
-::: {.column width="48%"}
+::: {.column width="47%"}
 
-**Synthetic prompts**
+**Why we did not build a synthetic classifier corpus**
 
-- an LLM can generate prompts for a requested risk category
-- this provides targeted examples and provisional labels
-- the assigned category still requires verification
-- in our initial trials, wording and scenarios were often repetitive
+- generated scenarios and wording were often repetitive
+- the requested category remained a provisional label
+- reliable labels still required verification
+
+We therefore train and evaluate the classifier on **observed user prompts** from public conversations.
 
 :::
 
-::: {.column width="4%"}
+::: {.column width="5%"}
 :::
 
-::: {.column width="48%"}
+::: {.column .fragment width="48%"}
 
-**Observed prompts**
+**Observed source pool**
 
-- public human-assistant conversations preserve natural variation
-- they also contain ambiguity, noise, and missing context
-- they arrive without risk labels
-- severe cases are extremely rare
+- **3** public conversation datasets [@lmsys; @isotonic; @ultrachat]
+- **6.72 million** unique prompts after filtering and deduplication
+- **826** human-labelled prompts as seed
+
+Random sampling yielded only one Unacceptable prompt in the initial seed. Later rounds therefore selected candidates near already labelled severe examples.
 
 :::
 ::::
 
-::: {.callout-important}
-We chose observed prompts for the classifier corpus. Synthetic variants were used later only to improve retrieval around human-reviewed rare examples.
-:::
-
 ::: {.notes}
 **Say**
 
-- Our first idea was to generate the entire training set with an LLM.
-- That is attractive because we can request a category and obtain an apparent label at the same time.
-- But the label is only a claim made by the generator, and the early prompts sounded too similar to one another.
-- We therefore based the classifier corpus on observed prompts from public conversations.
-- Synthetic examples still had a narrow role later: they helped the retriever search near a small number of reviewed Unacceptable cases. They are not part of the classifier evaluation corpus.
-:::
-
-### The source pool contains 6.7 million observed prompts
-
-- **Source:** user turns from three public conversation datasets [@lmsys; @isotonic; @ultrachat]
-- **Preparation:** minimum-length filter, English filter where required, and exact deduplication within each source
-- **Result:** 6,720,021 unique prompts
-- **Round 1:** 826 human-labelled prompts, including one Unacceptable example
-- **Round 11:** 9,127 labelled prompts serve as retrieval seeds
-
-::: {.callout-warning}
-Random sampling does not provide enough severe examples for training or evaluation. Candidate selection therefore has to be targeted.
-:::
-
-::: {.notes}
-**Say**
-
-- The source pool contains observed prompts, not prompts collected from a company deployment.
-- We retain only user turns, remove very short texts, filter for English where required, and deduplicate within each dataset.
-- This leaves 6.72 million prompts.
-- Experts labelled an initial seed of 826 observed prompts. Only one was Unacceptable, which shows why random sampling alone is not viable.
-- The retrieval pool grew after every round. By round 11, 9,127 labelled prompts were available as search seeds.
+- Our first idea was to generate the complete classifier corpus with an LLM.
+- The approach gave us targeted examples with apparent labels, but the examples often repeated similar language and scenarios. The labels still needed verification.
+- We therefore use observed prompts from three public conversation datasets for classifier training and evaluation.
+- Filtering and deduplication leave 6.72 million prompts. Experts labelled 826 prompts in the first round, including only one Unacceptable case.
+- Synthetic variants have one narrow role: they help the embedding retriever find observed prompts near reviewed rare cases. They never enter classifier training or evaluation.
+- The detailed comparison and source-pool description are available in the backup.
 :::
 
 ### Eleven rounds of targeted labelling
@@ -539,6 +507,7 @@ Authors’ illustration of the proposed deployment design.
 - only the embedding model changes
 - evaluation restricted to 57,878 retrieval-selected observed prompts
 - fine-tuning examples were derived from the initial workbook sample
+- Severe AP compares the encoders before class thresholds are selected
 
 :::
 
@@ -575,6 +544,8 @@ Fine-tuning helps the retriever find similar severe prompts, but does not improv
 - Run 5 and Run 11 refer to checkpoints from the fifth and eleventh rounds of the retrieval loop.
 - We exclude the initial workbook sample because the retriever fine-tuning data were derived from those examples.
 - Synthetic variants appear only in retriever fine-tuning. They are not classifier training or evaluation rows.
+- Severe AP evaluates the ranking before threshold selection. Macro-F1 uses the largest-probability class as a secondary metric.
+- The separate class thresholds are selected later for the operating point, as described on the Evaluation protocol slide.
 - Both fine-tuned encoders remain slightly below the base model.
 - Retrieval and classification need different structure. Training for one task does not automatically help the other.
 :::
@@ -687,59 +658,6 @@ These results estimate performance on a selected consensus corpus. They do not p
 - The model cannot determine compliance autonomously. It can only select a more cautious response policy.
 :::
 
-### Performance increases with the number of severe labels
-
-:::: {.columns}
-::: {.column width="62%"}
-
-![Source: authors’ analysis.](img/fig_learning_curve.svg){width=100% fig-align="center" fig-alt="Learning curve for severe prompt classification. The four observed points show increasing average precision; the dashed continuation beyond 400 examples is an extrapolation."}
-
-:::
-
-::: {.column width="3%"}
-:::
-
-::: {.column width="35%"}
-
-**How to read the plot**
-
-- four observed training sizes: 50, 100, 200, and 400 severe examples
-- points show mean AP across five random subsamples; bars show one standard deviation
-- the solid line covers the observed range; the dashed line extrapolates beyond it
-
-**Log-linear fit**
-
-$$
-\begin{aligned}
-AP &= -0.187+0.133\ln(n) \\
-R^2 &= 0.979
-\end{aligned}
-$$
-
-Doubling the training set adds $0.133\ln(2)=0.092$ AP.
-
-::: {.callout-important .fragment}
-**Planning estimate.** AP 0.75 corresponds to about **1,160 severe examples**, but this extrapolates beyond the largest observed training set of 400.
-:::
-
-:::
-::::
-
-::: {.notes}
-**Say**
-
-- The learning curve measures whether additional labels are likely to help.
-- Severe examples are subsampled only in the training sets. Every test set retains all positive cases.
-- Each point averages five random subsamples at the stated training size; the error bar shows one standard deviation across these draws.
-- Average precision still increases across the observed range. Each doubling adds about 0.09 average precision.
-- The log-linear fit, $AP=-0.187+0.133\ln(n)$, has an R-squared of 0.979.
-- A two-fold extrapolation suggests about 1,160 severe examples for an average precision of 0.75. The estimate supports planning but cannot guarantee performance.
-- If asked why we did not collect more labels first: we already searched 6.7 million prompts through eleven targeted rounds. The resulting consensus corpus contains only 593 severe examples.
-- Raw prompts are abundant. Reliably identified severe cases are scarce. In the earlier three-model sample, agreement was only $\kappa=0.40$, and 13% of human labels changed on re-review.
-- The next phase therefore needs a better annotation design, especially disagreement sampling and adjudication, rather than another pass with the same retrieval and consensus filter.
-- The scientific contribution at this stage is to quantify that bottleneck, expose the sampling bias, and estimate the scale of the next data collection.
-:::
-
 ### Main findings
 
 ::: {.incremental}
@@ -758,23 +676,55 @@ Doubling the training set adds $0.133\ln(2)=0.092$ AP.
 - The current evidence points to additional reviewed severe examples as the most useful next investment.
 :::
 
-### The next labels should come from disputed cases
+### More labels should come from disputed cases
 
-![Authors’ illustration of the proposed monitoring and retraining process.](img/fig_full_loop.svg){width=78% fig-align="center" fig-alt="A runtime policy layer logs requests. A selected offline sample is reviewed by people and enters a labelled pool used to update the model, thresholds, and rules."}
+:::: {.columns}
+::: {.column width="58%"}
 
-The next annotation effort should prioritise:
+![Source: authors’ analysis.](img/fig_learning_curve.svg){width=88% fig-align="center" fig-alt="Learning curve for severe prompt classification. Four observed training sizes show increasing average precision; the dashed continuation beyond 400 examples is an extrapolation."}
 
-- the 2,316 prompts on which the earlier labelers disagreed
-- double annotation and adjudication for severe cases
-- consensus on the review action before agreement on the exact legal category
+$$
+AP=-0.187+0.133\ln(n), \qquad R^2=0.979
+$$
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column .fragment width="39%"}
+
+**Current evidence**
+
+- **593** severe labels in the consensus corpus
+- the observed curve has not flattened
+- the fit adds about **0.09 AP** per doubling
+- AP 0.75 corresponds to about **1,160** severe labels in the extrapolation
+
+**Next annotation sample**
+
+- start with **2,316 disputed prompts**
+- use double annotation and adjudication for severe cases
+- agree on the review action before the exact legal category
+
+:::
+::::
+
+::: {.callout-important .fragment}
+The immediate bottleneck is a larger, more stable set of severe labels.
+:::
 
 ::: {.notes}
 **Say**
 
-- A selected audit sample can provide useful new labels without placing a person in the live request path.
-- Disagreement cases are especially valuable. Half received at least one severe vote, and an initial human sample contained 26 percent severe cases.
-- Label stability comes first. Thirteen percent of human labels changed on re-review, all toward a more severe category.
-- The next study should use double annotation and explicit adjudication before collecting more easy examples.
+- The learning curve estimates how much additional severe labels may help.
+- Severe examples are subsampled only in the training sets. Every test set retains all positive cases. Each point averages five random subsamples, and the bars show one standard deviation.
+- Average precision continues to increase over the observed range. The fitted relationship implies about 0.09 additional AP when the training set doubles.
+- The estimate of about 1,160 severe examples for AP 0.75 extrapolates beyond the largest observed training set of 400. It supports planning but does not guarantee performance.
+- We already searched 6.7 million prompts through eleven targeted rounds, but the consensus corpus contains only 593 severe examples.
+- The 2,316 earlier disagreement cases offer a more informative next sample than additional easy examples. Half received at least one severe vote, and an initial human sample contained 26 percent severe cases.
+- The next study should use double annotation and explicit adjudication. Reviewers should first agree on the appropriate policy action, then on the exact legal category.
+- The detailed learning-curve explanation and the full monitoring loop are available in the backup.
 :::
 
 ### Outlook
@@ -864,6 +814,265 @@ Scan to open the presentation.
 :::
 
 # Backup {background-color="#868686" data-state="darksection"}
+
+### Risk categories in the EU AI Act
+
+![Authors’ illustration based on the legal sources cited below.](img/fig_ai_act_tiers.svg){width=88% fig-align="center" fig-alt="EU AI Act risk pyramid with four categories, legal basis, main obligations, dates of application, and possible routing actions."}
+
+::: {.callout-note}
+The category of an AI system follows from its **intended purpose and use**. A prompt can provide evidence about that context, but cannot establish the legal category on its own [@aiact].
+:::
+
+::: {.notes}
+**Say**
+
+- The figure summarises the four categories and illustrates possible organisational responses. The Act itself does not prescribe prompt-level routing.
+- Article 5 covers prohibited practices. Annex III lists high-risk areas of use. Article 50 contains transparency duties.
+- The Digital Omnibus moved the Annex III date to 2 December 2027. Article 50 has applied since 2 August 2026 [@omnibus].
+- Our labels are screening labels derived from these provisions. They are not legal decisions about deployed systems.
+:::
+
+### A prompt does not contain the deployment context
+
+The Act regulates AI systems that are placed on the market, put into service, or used [@aiact, Art. 5, 6]. A request for emotion-recognition code does not tell us whether anyone will deploy that code at work, in a school, or only in a local demonstration.
+
+![Authors’ illustration.](img/fig_intent_gap.svg){width=92% fig-align="center" fig-alt="A prompt is observed while the intended purpose and deployment context remain unknown. Different contexts lead to different AI Act categories."}
+
+::: {.callout-important}
+We therefore interpret the score as a **policy signal**. The chatbot can ask for missing context or switch to a constrained response policy.
+:::
+
+::: {.notes}
+**Say**
+
+- This is the central limitation of the study.
+- We observe the text, but usually do not observe who will deploy the resulting system, where it will be used, or who will be affected.
+- The same sentence can therefore be associated with different legal contexts.
+- The output can support automated prompt screening. It cannot replace a contextual legal assessment.
+:::
+
+### Research question
+
+**How reliably can a prompt-level model identify requests associated with severe AI Act use cases when those cases are rare and the deployment context is missing?**
+
+:::: {.columns}
+::: {.column width="48%"}
+
+**Input and target**
+
+- one prompt without conversation history or enterprise metadata
+- four AI Act risk categories
+- High and Unacceptable form the severe screening target
+
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+
+**Scope of the claim**
+
+- the model estimates whether a prompt may indicate a severe use case
+- the study evaluates screening performance and decision thresholds
+- the model does not determine legal compliance
+
+:::
+::::
+
+::: {.notes}
+**Say**
+
+- The question deliberately reflects the two main difficulties: severe examples are rare, and prompts often omit the deployment context.
+- We evaluate the prompt as a screening signal, not as a complete legal case description.
+- The four legal categories remain visible, but High and Unacceptable form the severe target for the initial routing decision.
+- The claim concerns statistical screening performance and threshold selection. It does not concern a complete legal compliance process.
+:::
+
+### Existing guardrails address different targets
+
+:::: {.columns}
+::: {.column width="57%"}
+
+**Published evidence**
+
+- **Ayub and Majumdar (2024) — prompt injection:** malicious prompts intended to override developer instructions. Random forest with OpenAI embeddings reaches F1 0.868 on 467,057 prompts (23.5% malicious) [@embinject].
+- **Zheng et al. (2024) — unsafe-content filtering:** safe versus unsafe prompts and conversation snippets from AEGIS. Fine-tuned Sentence-BERT reaches AUPRC 0.946 and F1 0.89 on 9,674 examples (about 63% unsafe) [@bertguard].
+- **Ahmed et al. (2026) — jailbreak detection:** adversarial prompts intended to bypass safety controls, including obfuscated and structured attacks. BGE embeddings with logistic regression reach 94.7% recall at 48.9 ms on 30,568 prompts (50.9% harmful) [@reflexguard].
+
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column .fragment width="39%"}
+
+**What transfers**
+
+- Dense embeddings with small classifiers support fast local screening.
+- The threshold governs missed cases and false alarms.
+
+**What remains open**
+
+- Earlier studies predict attacks or unsafe content—not application context.
+- Positive prevalence ranges from 23.5% to about 63%.
+- This study: possible regulatory use, **0.97% severe prompts**, and missing deployment context.
+
+:::
+::::
+
+::: {.research-takeaway .fragment}
+**Take-away:** Prior work validates the architecture—not performance with rare positives and missing deployment context.
+:::
+
+::: {.notes}
+**Say**
+
+- These three studies show that embeddings with relatively small classifiers can provide effective and fast prompt screening.
+- Ayub and Majumdar study prompt injection: deliberately crafted prompts that try to override developer instructions.
+- Zheng and colleagues study broad safe-versus-unsafe content in AEGIS, including categories such as hate, violence, sexual content, criminal planning, and self-harm.
+- Reflex-Guard focuses on jailbreaks and adversarial safety-bypass prompts, including obfuscated and structured attacks. Its logistic regression configuration reaches 94.7 percent recall at about 49 milliseconds mean latency.
+- I would not describe these studies simply as hacking. Prompt injection and jailbreaks can be security attacks, whereas unsafe-content filtering is a broader content-safety task.
+- These numbers should not be compared as a ranking. The labels, prevalence, datasets, and evaluation protocols differ.
+- The literature supports our architectural choice, but it does not answer whether prompt text can indicate a possible AI Act use when severe examples are rare and deployment context is missing.
+:::
+
+### Synthetic generation or observed prompts?
+
+:::: {.columns}
+::: {.column width="48%"}
+
+**Synthetic prompts**
+
+- an LLM can generate prompts for a requested risk category
+- this provides targeted examples and provisional labels
+- the assigned category still requires verification
+- in our initial trials, wording and scenarios were often repetitive
+
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="48%"}
+
+**Observed prompts**
+
+- public human-assistant conversations preserve natural variation
+- they also contain ambiguity, noise, and missing context
+- they arrive without risk labels
+- severe cases are extremely rare
+
+:::
+::::
+
+::: {.callout-important}
+We chose observed prompts for the classifier corpus. Synthetic variants were used later only to improve retrieval around human-reviewed rare examples.
+:::
+
+::: {.notes}
+**Say**
+
+- Our first idea was to generate the entire training set with an LLM.
+- That is attractive because we can request a category and obtain an apparent label at the same time.
+- But the label is only a claim made by the generator, and the early prompts sounded too similar to one another.
+- We therefore based the classifier corpus on observed prompts from public conversations.
+- Synthetic examples still had a narrow role later: they helped the retriever search near a small number of reviewed Unacceptable cases. They are not part of the classifier evaluation corpus.
+:::
+
+### The source pool contains 6.7 million observed prompts
+
+- **Source:** user turns from three public conversation datasets [@lmsys; @isotonic; @ultrachat]
+- **Preparation:** minimum-length filter, English filter where required, and exact deduplication within each source
+- **Result:** 6,720,021 unique prompts
+- **Round 1:** 826 human-labelled prompts, including one Unacceptable example
+- **Round 11:** 9,127 labelled prompts serve as retrieval seeds
+
+::: {.callout-warning}
+Random sampling does not provide enough severe examples for training or evaluation. Candidate selection therefore has to be targeted.
+:::
+
+::: {.notes}
+**Say**
+
+- The source pool contains observed prompts, not prompts collected from a company deployment.
+- We retain only user turns, remove very short texts, filter for English where required, and deduplicate within each dataset.
+- This leaves 6.72 million prompts.
+- Experts labelled an initial seed of 826 observed prompts. Only one was Unacceptable, which shows why random sampling alone is not viable.
+- The retrieval pool grew after every round. By round 11, 9,127 labelled prompts were available as search seeds.
+:::
+
+### Performance increases with the number of severe labels
+
+:::: {.columns}
+::: {.column width="62%"}
+
+![Source: authors’ analysis.](img/fig_learning_curve.svg){width=100% fig-align="center" fig-alt="Learning curve for severe prompt classification. The four observed points show increasing average precision; the dashed continuation beyond 400 examples is an extrapolation."}
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="35%"}
+
+**How to read the plot**
+
+- four observed training sizes: 50, 100, 200, and 400 severe examples
+- points show mean AP across five random subsamples; bars show one standard deviation
+- the solid line covers the observed range; the dashed line extrapolates beyond it
+
+**Log-linear fit**
+
+$$
+\begin{aligned}
+AP &= -0.187+0.133\ln(n) \\
+R^2 &= 0.979
+\end{aligned}
+$$
+
+Doubling the training set adds $0.133\ln(2)=0.092$ AP.
+
+::: {.callout-important .fragment}
+**Planning estimate.** AP 0.75 corresponds to about **1,160 severe examples**, but this extrapolates beyond the largest observed training set of 400.
+:::
+
+:::
+::::
+
+::: {.notes}
+**Say**
+
+- The learning curve measures whether additional labels are likely to help.
+- Severe examples are subsampled only in the training sets. Every test set retains all positive cases.
+- Each point averages five random subsamples at the stated training size; the error bar shows one standard deviation across these draws.
+- Average precision still increases across the observed range. Each doubling adds about 0.09 average precision.
+- The log-linear fit, $AP=-0.187+0.133\ln(n)$, has an R-squared of 0.979.
+- A two-fold extrapolation suggests about 1,160 severe examples for an average precision of 0.75. The estimate supports planning but cannot guarantee performance.
+- If asked why we did not collect more labels first: we already searched 6.7 million prompts through eleven targeted rounds. The resulting consensus corpus contains only 593 severe examples.
+- Raw prompts are abundant. Reliably identified severe cases are scarce. In the earlier three-model sample, agreement was only $\kappa=0.40$, and 13% of human labels changed on re-review.
+- The next phase therefore needs a better annotation design, especially disagreement sampling and adjudication, rather than another pass with the same retrieval and consensus filter.
+- The scientific contribution at this stage is to quantify that bottleneck, expose the sampling bias, and estimate the scale of the next data collection.
+:::
+
+### The next labels should come from disputed cases
+
+![Authors’ illustration of the proposed monitoring and retraining process.](img/fig_full_loop.svg){width=78% fig-align="center" fig-alt="A runtime policy layer logs requests. A selected offline sample is reviewed by people and enters a labelled pool used to update the model, thresholds, and rules."}
+
+The next annotation effort should prioritise:
+
+- the 2,316 prompts on which the earlier labelers disagreed
+- double annotation and adjudication for severe cases
+- consensus on the review action before agreement on the exact legal category
+
+::: {.notes}
+**Say**
+
+- A selected audit sample can provide useful new labels without placing a person in the live request path.
+- Disagreement cases are especially valuable. Half received at least one severe vote, and an initial human sample contained 26 percent severe cases.
+- Label stability comes first. Thirteen percent of human labels changed on re-review, all toward a more severe category.
+- The next study should use double annotation and explicit adjudication before collecting more easy examples.
+:::
 
 ### Source data
 
