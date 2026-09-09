@@ -447,7 +447,7 @@ The high-dimensional representation motivates the comparison but does not determ
 ### Evaluation protocol
 
 :::: {.columns}
-::: {.column .fragment width="49%"}
+::: {.column width="49%"}
 
 **Ranking the classifiers**
 
@@ -462,7 +462,7 @@ The high-dimensional representation motivates the comparison but does not determ
 ::: {.column width="2%"}
 :::
 
-::: {.column width="49%"}
+::: {.column .fragment width="49%"}
 
 **Choosing an operating point**
 
