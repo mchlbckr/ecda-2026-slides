@@ -1524,14 +1524,13 @@ border: 0;
 <h3>Enterprise assistants combine many tasks in one interface</h3>
 <div class="columns">
 <div class="column" style="width:42%;">
-<p>Companies increasingly give employees access to general-purpose language models through:</p>
+<p>Companies give employees access to general-purpose language models through:</p>
 <ul>
-<li>internal chat portals</li>
-<li>office and coding copilots</li>
-<li>assistants with access to company documents</li>
+<li>general chat portals and office or coding copilots</li>
+<li>assistants connected to company documents and tools</li>
 <li>chat interfaces in service, HR, or analytics applications</li>
 </ul>
-<p>The same interface can summarise a policy or compare job applicants. The model remains the same while the <strong>purpose of the request</strong> changes.</p>
+<p>These systems accept open-ended requests. Policies, training, and access controls do not ensure that every prompt remains within an approved use.</p>
 </div><div class="column" style="width:4%;">
 
 </div><div class="column" style="width:54%;">
@@ -1540,35 +1539,6 @@ border: 0;
 <p>Example: Langdock enterprise assistant interface.</p>
 </div>
 </div></div>
-<aside class="notes">
-<p><strong>Say</strong></p>
-<ul>
-<li>Begin with systems the audience will recognise: internal chat portals, copilots, and assistants connected to company documents.</li>
-<li>These systems accept open-ended text and serve several organisational functions.</li>
-<li>A request for policy information and a request for applicant ranking may reach the same model endpoint.</li>
-<li>This flexibility creates the governance problem addressed in the study.</li>
-</ul>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
-</section>
-<section id="approved-access-does-not-guarantee-an-approved-use" class="slide level3">
-<h3>Approved access does not guarantee an approved use</h3>
-<p>Companies can define permitted uses, train employees, and restrict access. These measures do not determine what an employee will enter into an open text field.</p>
-<ul>
-<li>users may not know that a request falls under a regulated use case</li>
-<li>organisational policies may be incomplete or difficult to apply</li>
-<li>seemingly harmless wording can conceal a consequential purpose</li>
-<li>administrators usually see the request before they know its wider context</li>
-</ul>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1578,17 +1548,18 @@ display:block!important;
 <p><strong>Important</strong></p>
 </div>
 <div class="callout-content">
-<p>Governance therefore needs a request-level signal before the model produces an answer.</p>
+<p>The same interface can summarise a policy or rank job applicants. Governance must therefore consider each request, not only access to the model.</p>
 </div>
 </div>
 </div>
 <aside class="notes">
 <p><strong>Say</strong></p>
 <ul>
-<li>The issue does not require malicious users.</li>
-<li>An employee may simply be unaware that applicant ranking, credit scoring, or emotion recognition carries additional legal requirements.</li>
-<li>Policies and training remain necessary, but open-ended input creates an observation point that policy documents cannot cover on their own.</li>
-<li>This is why we investigate the prompt rather than relying only on the approved description of the chatbot.</li>
+<li>Begin with systems the audience will recognise: internal chat portals, copilots, and assistants connected to company documents.</li>
+<li>A request for policy information and a request for applicant ranking may reach the same approved model endpoint.</li>
+<li>The issue does not require malicious intent. An employee may simply be unaware that a request falls under a regulated use case.</li>
+<li>Policies, training, and access controls remain necessary, but they do not govern every request entered into an open text field.</li>
+<li>This creates the need for a request-level signal before the model produces an answer.</li>
 </ul>
 <style type="text/css">
 span.MJX_Assistive_MathML {
