@@ -276,7 +276,8 @@ We chose observed prompts for the classifier corpus. Synthetic variants were use
 - **Source:** user turns from three public conversation datasets [@lmsys; @isotonic; @ultrachat]
 - **Preparation:** minimum-length filter, English filter where required, and exact deduplication within each source
 - **Result:** 6,720,021 unique prompts
-- **Expert seed:** 826 labelled prompts, including one Unacceptable example
+- **Round 1:** 826 human-labelled prompts, including one Unacceptable example
+- **Round 11:** 9,127 labelled prompts serve as retrieval seeds
 
 ::: {.callout-warning}
 Random sampling does not provide enough severe examples for training or evaluation. Candidate selection therefore has to be targeted.
@@ -288,14 +289,19 @@ Random sampling does not provide enough severe examples for training or evaluati
 - The source pool contains observed prompts, not prompts collected from a company deployment.
 - We retain only user turns, remove very short texts, filter for English where required, and deduplicate within each dataset.
 - This leaves 6.72 million prompts.
-- Experts labelled an initial seed of 826 prompts. Only one was Unacceptable, which shows why random sampling alone is not viable.
+- Experts labelled an initial seed of 826 observed prompts. Only one was Unacceptable, which shows why random sampling alone is not viable.
+- The retrieval pool grew after every round. By round 11, 9,127 labelled prompts were available as search seeds.
 :::
 
 ### Eleven rounds of targeted labelling
 
 **Human review:** every High and Unacceptable label, plus samples of Limited and Minimal labels
 
-![Authors’ illustration of the study workflow.](img/fig_labelling_loop.svg){width=100% fig-align="center" fig-alt="An iterative labelling process combines seed labels, embedding-based retrieval, two language-model labels, human review, and retriever fine-tuning over eleven rounds."}
+![Authors’ illustration of the study workflow.](img/fig_labelling_loop.svg){width=96% fig-align="center" fig-alt="An iterative labelling process combines seed labels, embedding-based retrieval, two language-model labels, human review, and retriever fine-tuning over eleven rounds."}
+
+::: {.research-takeaway}
+**Synthetic prompts support retrieval only:** 89 AI Act anchors in Run 11 and 663 variants derived from 15 reviewed Unacceptable corpus prompts. The classifier corpus contains 52 observed Unacceptable prompts.
+:::
 
 ::: {.notes}
 **Say**
@@ -303,7 +309,9 @@ Random sampling does not provide enough severe examples for training or evaluati
 - Each round starts by embedding the source pool and retrieving prompts near already labelled severe examples.
 - Two language models label each candidate independently and see only the prompt text and a neutral identifier.
 - People reviewed every High and Unacceptable label. Limited and Minimal labels received sample-based checks.
+- Disagreement cases provide the strongest learning signal. AutoResearch used them to refine the labelling prompt automatically.
 - The retriever is fine-tuned only for finding the next candidates. It is not the final classifier.
+- In round 11, 89 synthetic prompts derived from the AI Act were additional retrieval anchors. They are not observed corpus prompts and never enter the classifier data.
 - Eleven rounds produced 60,925 prompts for which the two labelers agree.
 :::
 
@@ -323,7 +331,8 @@ With only 15 observed Unacceptable examples in the early rounds, ordinary positi
 - Consider the first pair. Adding “in a job interview” changes the purpose of an otherwise similar scoring task.
 - A vocabulary-based model may learn words such as dementia, interview, or subliminal.
 - The paired examples make the relevant contextual difference explicit.
-- We derived 663 variants from 15 reviewed Unacceptable examples for retrieval training. They do not enter the classifier evaluation corpus.
+- We derived 663 variants from 15 reviewed Unacceptable corpus examples for retrieval training. This helped retrieve 52 observed Unacceptable prompts in total.
+- Both these variants and the 89 synthetic AI Act anchors are retrieval aids only. They do not enter classifier training or evaluation.
 :::
 
 ### The modelling corpus is enriched and highly imbalanced
@@ -584,7 +593,7 @@ slide_table(
   data.frame(
     Classifier = c("RBF SVM", "tuned LightGBM", "random forest", "logistic regression", "linear SVM"),
     `Severe AP` = c("0.640", "0.604", "0.546", "0.306", "0.298"),
-    `Difference from SVM` = c("reference", "−0.037", "−0.095", "−0.333", "−0.340"),
+    `Difference from SVM` = c("reference", "−0.037", "−0.095", "−0.333", "−0.342"),
     check.names = FALSE
   ),
   align = c("l", "r", "r"),
@@ -627,7 +636,7 @@ The RBF SVM reaches 0.640 average precision. The main contrast is non-linear ver
 ```{r}
 slide_table(
   data.frame(
-    Encoder = c("Base ModernBERT", "fine-tuned, run 5", "fine-tuned, cfg-lm70"),
+    Encoder = c("Base ModernBERT", "fine-tuned encoder, Run 5", "fine-tuned encoder, Run 11"),
     `Severe AP` = c("0.520", "0.516", "0.510"),
     `95% interval` = c("[0.46, 0.57]", "[0.46, 0.57]", "[0.45, 0.57]"),
     `Macro-F1` = c("0.383", "0.346", "0.328"),
@@ -649,6 +658,7 @@ Fine-tuning helps the retriever find similar severe prompts, but does not improv
 **Say**
 
 - This experiment compares three encoders on the same prompts, labels, and folds.
+- Run 5 and Run 11 refer to checkpoints from the fifth and eleventh rounds of the retrieval loop.
 - We exclude the initial workbook sample because the retriever fine-tuning data were derived from those examples.
 - Synthetic variants appear only in retriever fine-tuning. They are not classifier training or evaluation rows.
 - Both fine-tuned encoders remain slightly below the base model.
