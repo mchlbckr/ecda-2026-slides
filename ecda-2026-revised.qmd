@@ -48,14 +48,13 @@ slide_table <- function(x, align = NULL, bold_rows = integer()) {
 :::: {.columns}
 ::: {.column width="42%"}
 
-Companies increasingly give employees access to general-purpose language models through:
+Companies give employees access to general-purpose language models through:
 
-- internal chat portals
-- office and coding copilots
-- assistants with access to company documents
+- general chat portals and office or coding copilots
+- assistants connected to company documents and tools
 - chat interfaces in service, HR, or analytics applications
 
-The same interface can summarise a policy or compare job applicants. The model remains the same while the **purpose of the request** changes.
+These systems accept open-ended requests. Policies, training, and access controls do not ensure that every prompt remains within an approved use.
 
 :::
 
@@ -73,35 +72,18 @@ Example: Langdock enterprise assistant interface.
 :::
 ::::
 
+::: {.callout-important}
+The same interface can summarise a policy or rank job applicants. Governance must therefore consider each request, not only access to the model.
+:::
+
 ::: {.notes}
 **Say**
 
 - Begin with systems the audience will recognise: internal chat portals, copilots, and assistants connected to company documents.
-- These systems accept open-ended text and serve several organisational functions.
-- A request for policy information and a request for applicant ranking may reach the same model endpoint.
-- This flexibility creates the governance problem addressed in the study.
-:::
-
-### Approved access does not guarantee an approved use
-
-Companies can define permitted uses, train employees, and restrict access. These measures do not determine what an employee will enter into an open text field.
-
-- users may not know that a request falls under a regulated use case
-- organisational policies may be incomplete or difficult to apply
-- seemingly harmless wording can conceal a consequential purpose
-- administrators usually see the request before they know its wider context
-
-::: {.callout-important}
-Governance therefore needs a request-level signal before the model produces an answer.
-:::
-
-::: {.notes}
-**Say**
-
-- The issue does not require malicious users.
-- An employee may simply be unaware that applicant ranking, credit scoring, or emotion recognition carries additional legal requirements.
-- Policies and training remain necessary, but open-ended input creates an observation point that policy documents cannot cover on their own.
-- This is why we investigate the prompt rather than relying only on the approved description of the chatbot.
+- A request for policy information and a request for applicant ranking may reach the same approved model endpoint.
+- The issue does not require malicious intent. An employee may simply be unaware that a request falls under a regulated use case.
+- Policies, training, and access controls remain necessary, but they do not govern every request entered into an open text field.
+- This creates the need for a request-level signal before the model produces an answer.
 :::
 
 ### Risk categories in the EU AI Act
