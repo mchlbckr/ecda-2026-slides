@@ -528,34 +528,6 @@ Authors’ illustration of the proposed deployment design.
 
 # Results {background-color="#0014a0" data-state="darksection"}
 
-### Non-linear classifiers perform best
-
-```{r}
-slide_table(
-  data.frame(
-    Classifier = c("RBF SVM", "tuned LightGBM", "random forest", "logistic regression", "linear SVM"),
-    `Severe AP` = c("0.640", "0.604", "0.546", "0.306", "0.298"),
-    `Difference from SVM` = c("reference", "−0.037", "−0.095", "−0.333", "−0.342"),
-    check.names = FALSE
-  ),
-  align = c("l", "r", "r"),
-  bold_rows = 1
-)
-```
-
-::: {.callout-important .fragment}
-The RBF SVM reaches 0.640 average precision. The main contrast is non-linear versus linear; its lead over tuned LightGBM is 0.037.
-:::
-
-::: {.notes}
-**Say**
-
-- Non-linearity matters. Both linear models reach only about 0.30 average precision.
-- The RBF SVM performs best at 0.640.
-- Its advantage over tuned LightGBM is real but modest at 0.037 across the paired resamples.
-- The complete request path takes 55 milliseconds on CPU. The SVM itself accounts for less than one millisecond.
-:::
-
 ### Retrieval fine-tuning does not improve classification
 
 :::: {.columns}
@@ -607,28 +579,17 @@ Fine-tuning helps the retriever find similar severe prompts, but does not improv
 - Retrieval and classification need different structure. Training for one task does not automatically help the other.
 :::
 
-### A binary target matches the governance action
+### Target definition matters more than classifier choice
 
 :::: {.columns}
-::: {.column width="43%"}
+::: {.column width="39%"}
 
-**Why combine the severe classes?**
-
-- High and Unacceptable remain distinct legal categories
-- both categories activate additional policy handling in the proposed workflow
-- label disagreement is most common at this boundary
-
-:::
-
-::: {.column width="3%"}
-:::
-
-::: {.column .fragment width="54%"}
+**Prediction target**
 
 ```{r}
 slide_table(
   data.frame(
-    `Prediction target` = c("four categories, severe probabilities added", "binary severe versus other"),
+    Target = c("four categories", "severe versus other"),
     `Severe AP` = c("0.518", "0.640"),
     check.names = FALSE
   ),
@@ -637,15 +598,37 @@ slide_table(
 )
 ```
 
-- difference: **+0.121 AP**
-- 95% bootstrap interval: **[+0.089, +0.155]**
-- binary model better in all **2,000 paired resamples**
+- High and Unacceptable remain legally distinct
+- both first activate additional policy handling
+- binary target improvement: **+0.121 AP**
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column .fragment width="58%"}
+
+**Classifier comparison using the binary target**
+
+```{r}
+slide_table(
+  data.frame(
+    Classifier = c("RBF SVM", "tuned LightGBM", "random forest", "logistic regression", "linear SVM"),
+    `Severe AP` = c("0.640", "0.604", "0.546", "0.306", "0.298"),
+    `Difference from RBF SVM` = c("reference", "−0.037", "−0.095", "−0.333", "−0.342"),
+    check.names = FALSE
+  ),
+  align = c("l", "r", "r"),
+  bold_rows = 1
+)
+```
 
 :::
 ::::
 
 ::: {.callout-important .fragment}
-Aligning the prediction target with the response policy improves performance more than any change of classifier or embedding model in this study.
+Changing the target adds 0.121 AP. Within the binary target, the RBF SVM leads tuned LightGBM by 0.037.
 :::
 
 ::: {.notes}
@@ -654,7 +637,10 @@ Aligning the prediction target with the response policy improves performance mor
 - The legal distinction remains important, but both labels first activate the more cautious response policy.
 - A four-category classifier must learn a boundary supported by only 52 Unacceptable examples.
 - Training directly for severe versus other increases average precision from 0.518 to 0.640.
-- This is the largest measured improvement in the study.
+- The 95% bootstrap interval for this improvement is from 0.089 to 0.155. The binary model performs better in all 2,000 paired resamples.
+- Every classifier in the right-hand table uses this binary target, the same embeddings, and the same cross-validation folds.
+- The RBF SVM performs best. Its lead over tuned LightGBM is 0.037, while both linear models reach only about 0.30 average precision.
+- The complete request path takes 55 milliseconds on CPU. The SVM itself accounts for less than one millisecond.
 :::
 
 # Discussion and future work {background-color="#0014a0" data-state="darksection"}
