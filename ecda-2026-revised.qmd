@@ -297,26 +297,6 @@ Random sampling does not provide enough severe examples for training or evaluati
 - Eleven rounds produced 60,925 prompts for which the two labelers agree.
 :::
 
-### Contrastive examples define the boundary
-
-Small changes in purpose can change the relevant category even when most words remain the same.
-
-![Authors’ illustration based on examples from the study.](img/fig_contrastive_pairs.svg){width=100% fig-align="center" fig-alt="Four pairs of similar prompts in which a short change in intended purpose changes the assigned AI Act category."}
-
-::: {.callout-important}
-With only 15 observed Unacceptable examples in the early rounds, ordinary positive examples mainly teach topic words. The paired variants provide examples on both sides of the intended-purpose boundary.
-:::
-
-::: {.notes}
-**Say**
-
-- Consider the first pair. Adding “in a job interview” changes the purpose of an otherwise similar scoring task.
-- A vocabulary-based model may learn words such as dementia, interview, or subliminal.
-- The paired examples make the relevant contextual difference explicit.
-- We derived 663 variants from 15 reviewed Unacceptable corpus examples for retrieval training. This helped retrieve 52 observed Unacceptable prompts in total.
-- Both these variants and the 89 synthetic AI Act anchors are retrieval aids only. They do not enter classifier training or evaluation.
-:::
-
 ### The modelling corpus is enriched and highly imbalanced
 
 :::: {.columns}
@@ -749,96 +729,6 @@ Aligning the prediction target with the response policy improves performance mor
 - This is the largest measured improvement in the study.
 :::
 
-### Probabilities understate risk near the decision threshold
-
-:::: {.columns}
-::: {.column width="61%"}
-
-![Source: authors’ analysis of out-of-fold predictions.](img/fig_reliability.svg){width=78% fig-align="center" fig-alt="Reliability plot for High and Unacceptable prompts. Points above the diagonal have a higher observed class frequency than their mean predicted probability."}
-
-:::
-
-::: {.column width="3%"}
-:::
-
-::: {.column width="36%"}
-
-**How to read the plot**
-
-- one point represents one 0.1-wide bin of out-of-fold predictions
-- horizontal position: mean predicted probability in the bin
-- vertical position: observed share of the class in the bin
-- larger points contain more prompts; bins with fewer than five prompts are omitted
-
-::: {.callout-warning .fragment}
-**Result.** In one High-risk bin, the model assigns an average probability of 0.28, but 72% of the prompts in that bin are High ($n=277$).
-
-The overall expected calibration error of 0.005 conceals this rare-class error because Minimal prompts dominate the corpus.
-:::
-
-:::
-::::
-
-::: {.notes}
-**Say**
-
-- These are probability bins, not iterations or cross-validation rounds.
-- The lines connect the bins in increasing order of predicted probability. They do not represent a temporal sequence.
-- The ranking model can still be useful when its probability estimates are imperfect.
-- The error matters around the point where the system changes its response policy.
-- In this bin, a predicted High probability of 0.28 corresponds to an observed frequency of 0.72.
-- The overall expected calibration error is only 0.005 because Minimal prompts dominate the corpus. That aggregate value conceals the rare-class error visible here.
-- Thresholds compensate for the error only on this study corpus. They must be estimated again with local deployment data.
-:::
-
-### Thresholds raise severe recall from 2% to 61%
-
-:::: {.columns}
-::: {.column width="30%"}
-
-**Evaluation setup**
-
-- threshold selection on one half of the retrieved rows
-- evaluation on the other half
-- results averaged across 40 random splits
-
-:::
-
-::: {.column width="3%"}
-:::
-
-::: {.column .fragment width="67%"}
-
-```{r}
-slide_table(
-  data.frame(
-    `Decision method` = c("largest predicted category", "category-specific thresholds", "binary target with threshold"),
-    `Severe recall` = c("0.021", "0.573", "0.606"),
-    Precision = c("n/a", "0.639", "0.636"),
-    `Share flagged` = c("n/a", "0.67%", "0.71%"),
-    check.names = FALSE
-  ),
-  align = c("l", "r", "r", "r"),
-  bold_rows = 3
-)
-```
-
-:::
-::::
-
-::: {.callout-important .fragment}
-At the selected operating point, the model identifies 61% of consensus-severe prompts and flags 0.7% of prompts for additional policy handling.
-:::
-
-::: {.notes}
-**Say**
-
-- The largest-probability rule identifies only two percent of severe prompts and none of the Unacceptable prompts.
-- Category-specific thresholds raise severe recall to 57 percent.
-- The binary target raises it to 61 percent, while the flagged share remains about 0.7 percent.
-- The remaining Unacceptable recall is 0.118. The retrieved evaluation set contains only 14 positive examples in this category.
-:::
-
 # Discussion and future work {background-color="#0014a0" data-state="darksection"}
 
 ### The model flags 61% of severe prompts and misses 39%
@@ -1081,6 +971,26 @@ slide_table(
 
 LMSYS was restricted to its 777,453 English conversations. Deduplication was performed separately within each source, so identical prompts across sources remain.
 
+### Contrastive examples define the boundary
+
+Small changes in purpose can change the relevant category even when most words remain the same.
+
+![Authors’ illustration based on examples from the study.](img/fig_contrastive_pairs.svg){width=100% fig-align="center" fig-alt="Four pairs of similar prompts in which a short change in intended purpose changes the assigned AI Act category."}
+
+::: {.callout-important}
+With only 15 observed Unacceptable examples in the early rounds, ordinary positive examples mainly teach topic words. The paired variants provide examples on both sides of the intended-purpose boundary.
+:::
+
+::: {.notes}
+**Say**
+
+- Consider the first pair. Adding “in a job interview” changes the purpose of an otherwise similar scoring task.
+- A vocabulary-based model may learn words such as dementia, interview, or subliminal.
+- The paired examples make the relevant contextual difference explicit.
+- We derived 663 variants from 15 reviewed Unacceptable corpus examples for retrieval training. This helped retrieve 52 observed Unacceptable prompts in total.
+- Both these variants and the 89 synthetic AI Act anchors are retrieval aids only. They do not enter classifier training or evaluation.
+:::
+
 ### Examples and disputed labels {.smaller}
 
 :::: {.columns}
@@ -1203,6 +1113,96 @@ slide_table(
 ```
 
 The evidence does not support further model complexity as the first priority. Additional adjudicated severe examples are more likely to improve the system.
+
+### Probabilities understate risk near the decision threshold
+
+:::: {.columns}
+::: {.column width="61%"}
+
+![Source: authors’ analysis of out-of-fold predictions.](img/fig_reliability.svg){width=78% fig-align="center" fig-alt="Reliability plot for High and Unacceptable prompts. Points above the diagonal have a higher observed class frequency than their mean predicted probability."}
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column width="36%"}
+
+**How to read the plot**
+
+- one point represents one 0.1-wide bin of out-of-fold predictions
+- horizontal position: mean predicted probability in the bin
+- vertical position: observed share of the class in the bin
+- larger points contain more prompts; bins with fewer than five prompts are omitted
+
+::: {.callout-warning .fragment}
+**Result.** In one High-risk bin, the model assigns an average probability of 0.28, but 72% of the prompts in that bin are High ($n=277$).
+
+The overall expected calibration error of 0.005 conceals this rare-class error because Minimal prompts dominate the corpus.
+:::
+
+:::
+::::
+
+::: {.notes}
+**Say**
+
+- These are probability bins, not iterations or cross-validation rounds.
+- The lines connect the bins in increasing order of predicted probability. They do not represent a temporal sequence.
+- The ranking model can still be useful when its probability estimates are imperfect.
+- The error matters around the point where the system changes its response policy.
+- In this bin, a predicted High probability of 0.28 corresponds to an observed frequency of 0.72.
+- The overall expected calibration error is only 0.005 because Minimal prompts dominate the corpus. That aggregate value conceals the rare-class error visible here.
+- Thresholds compensate for the error only on this study corpus. They must be estimated again with local deployment data.
+:::
+
+### Thresholds raise severe recall from 2% to 61%
+
+:::: {.columns}
+::: {.column width="30%"}
+
+**Evaluation setup**
+
+- threshold selection on one half of the retrieved rows
+- evaluation on the other half
+- results averaged across 40 random splits
+
+:::
+
+::: {.column width="3%"}
+:::
+
+::: {.column .fragment width="67%"}
+
+```{r}
+slide_table(
+  data.frame(
+    `Decision method` = c("largest predicted category", "category-specific thresholds", "binary target with threshold"),
+    `Severe recall` = c("0.021", "0.573", "0.606"),
+    Precision = c("n/a", "0.639", "0.636"),
+    `Share flagged` = c("n/a", "0.67%", "0.71%"),
+    check.names = FALSE
+  ),
+  align = c("l", "r", "r", "r"),
+  bold_rows = 3
+)
+```
+
+:::
+::::
+
+::: {.callout-important .fragment}
+At the selected operating point, the model identifies 61% of consensus-severe prompts and flags 0.7% of prompts for additional policy handling.
+:::
+
+::: {.notes}
+**Say**
+
+- The largest-probability rule identifies only two percent of severe prompts and none of the Unacceptable prompts.
+- Category-specific thresholds raise severe recall to 57 percent.
+- The binary target raises it to 61 percent, while the flagged share remains about 0.7 percent.
+- The remaining Unacceptable recall is 0.118. The retrieved evaluation set contains only 14 positive examples in this category.
+:::
 
 ### First feedback experiment
 
