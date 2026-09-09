@@ -2343,87 +2343,6 @@ overflow: hidden!important;
 display:block!important;
 }</style></aside>
 </section>
-<section id="sampling-origin-changes-the-reported-performance" class="slide level3">
-<h3>Sampling origin changes the reported performance</h3>
-<p>Both subsets contain observed prompts and use the same model scores. Synthetic variants appear only in retriever fine-tuning.</p>
-<div class="columns">
-<div class="column" style="width:56%;">
-<div class="cell">
-<div class="cell-output-display">
-<table class="table deck-kable table-striped table-condensed caption-top" style="margin-left: auto; margin-right: auto;">
-<thead>
-<tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Sampling pathway</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">n</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Severe AP</th>
-<th style="text-align: right;" data-quarto-table-cell-role="th">Unacceptable AP</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">initial workbook sample</td>
-<td style="text-align: right;">3,047</td>
-<td style="text-align: right;">0.881</td>
-<td style="text-align: right;">0.920</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">retrieval-selected sample</td>
-<td style="text-align: right;">57,878</td>
-<td style="text-align: right;">0.518</td>
-<td style="text-align: right;">0.103</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div><div class="column" style="width:3%;">
-
-</div><div class="column fragment" style="width:41%;">
-<p><strong>Review and composition</strong></p>
-<ul>
-<li>every High and Unacceptable label was human-reviewed</li>
-<li>Limited and Minimal labels were checked on sampled rows</li>
-<li>the initial workbook sample contains <strong>73%</strong> of all Unacceptable cases</li>
-<li>pooled Unacceptable AP is <strong>0.62</strong>, compared with <strong>0.10</strong> on retrieval-selected rows</li>
-</ul>
-</div></div>
-<div class="fragment">
-<div class="callout callout-warning callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Warning</strong></p>
-</div>
-<div class="callout-content">
-<p>Evaluation on the mixed corpus would overstate performance on the cases encountered by the retrieval pipeline by about six times.</p>
-</div>
-</div>
-</div>
-</div>
-<aside class="notes">
-<p><strong>Say</strong></p>
-<ul>
-<li>This is the most important evaluation result in the talk.</li>
-<li>Both subsets contain observed prompts. The split captures how each row entered the corpus, not whether it is synthetic.</li>
-<li>Every severe label was reviewed by a person. Review of Limited and Minimal labels used samples.</li>
-<li>The initial workbook sample gives an Unacceptable average precision of 0.92. The retrieval-selected sample gives 0.10.</li>
-<li>Mixing the two would report 0.62 and hide the difference in difficulty.</li>
-<li>The result shows why data provenance must remain part of the evaluation protocol.</li>
-</ul>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
-</section>
 <section id="a-binary-target-matches-the-governance-action" class="slide level3">
 <h3>A binary target matches the governance action</h3>
 <div class="columns">
@@ -3067,6 +2986,87 @@ Mistral: Minimal, Gemma: High, Qwen: Minimal</li>
 </div>
 </div>
 <p>The evidence does not support further model complexity as the first priority. Additional adjudicated severe examples are more likely to improve the system.</p>
+</section>
+<section id="sampling-origin-changes-the-reported-performance" class="slide level3">
+<h3>Sampling origin changes the reported performance</h3>
+<p>Both subsets contain observed prompts and use the same model scores. Synthetic variants appear only in retriever fine-tuning.</p>
+<div class="columns">
+<div class="column" style="width:56%;">
+<div class="cell">
+<div class="cell-output-display">
+<table class="table deck-kable table-striped table-condensed caption-top" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Sampling pathway</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">n</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Severe AP</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Unacceptable AP</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">initial workbook sample</td>
+<td style="text-align: right;">3,047</td>
+<td style="text-align: right;">0.881</td>
+<td style="text-align: right;">0.920</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">retrieval-selected sample</td>
+<td style="text-align: right;">57,878</td>
+<td style="text-align: right;">0.518</td>
+<td style="text-align: right;">0.103</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div><div class="column" style="width:3%;">
+
+</div><div class="column fragment" style="width:41%;">
+<p><strong>Review and composition</strong></p>
+<ul>
+<li>every High and Unacceptable label was human-reviewed</li>
+<li>Limited and Minimal labels were checked on sampled rows</li>
+<li>the initial workbook sample contains <strong>73%</strong> of all Unacceptable cases</li>
+<li>pooled Unacceptable AP is <strong>0.62</strong>, compared with <strong>0.10</strong> on retrieval-selected rows</li>
+</ul>
+</div></div>
+<div class="fragment">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Warning</strong></p>
+</div>
+<div class="callout-content">
+<p>Evaluation on the mixed corpus would overstate performance on the cases encountered by the retrieval pipeline by about six times.</p>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p><strong>Say</strong></p>
+<ul>
+<li>This is the most important evaluation result in the talk.</li>
+<li>Both subsets contain observed prompts. The split captures how each row entered the corpus, not whether it is synthetic.</li>
+<li>Every severe label was reviewed by a person. Review of Limited and Minimal labels used samples.</li>
+<li>The initial workbook sample gives an Unacceptable average precision of 0.92. The retrieval-selected sample gives 0.10.</li>
+<li>Mixing the two would report 0.62 and hide the difference in difficulty.</li>
+<li>The result shows why data provenance must remain part of the evaluation protocol.</li>
+</ul>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
 </section>
 <section id="probabilities-understate-risk-near-the-decision-threshold" class="slide level3">
 <h3>Probabilities understate risk near the decision threshold</h3>
